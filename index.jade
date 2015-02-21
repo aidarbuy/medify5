@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+	head
+		title= pageTitle
+		link(rel="stylesheet", href='/bowers/bootstrap/dist/css/bootstrap.min.css')
+		link(rel="stylesheet", href='/styles/yeti.min.css')
+		link(rel="stylesheet", href='/styles/application.css')
+		base(href='/')
+	body(ng-app="doctorsApp")
+		.container
+			.header(ng-controller='NavCtrl')
+				ul.nav.nav-tabs
+					li(ng-class="{active:isActive('/')}"): a(ui-sref='main') Home
+					li(ng-class="{active:isActive('/doctors')}"): a(ui-sref='doctors') Doctors
+			.row
+				.span12.ui-view-container
+					ui-view(ng-animate="'view'")
+		script(type="text/javascript", src='/bowers/jquery/dist/jquery.min.js')
+		script(type="text/javascript", src='/bowers/bootstrap/dist/js/bootstrap.min.js')
+		script(type="text/javascript", src='/bowers/angular/angular.min.js')
+		script(type="text/javascript", src='/bowers/angular-route/angular-route.min.js')
+		script(type="text/javascript", src='/bowers/angular-ui-router/release/angular-ui-router.min.js')
+		script(type="text/javascript", src='/bowers/angular-resource/angular-resource.min.js')
+		script(type="text/javascript", src='//maps.googleapis.com/maps/api/js?sensor=false&language=en')
+		script(type="text/javascript", src='/bowers/lodash/dist/lodash.min.js')
+		script(type="text/javascript", src='/bowers/angular-google-maps/dist/angular-google-maps.min.js')
+		//- script(type="text/javascript", src="https://maps.googleapis.com/maps/api/js")
+		script(type="text/javascript", src='/app/application.js')
+		script(type="text/javascript", src='/app/controllers.js')
+		script(type="text/javascript", src='/app/factories.js')

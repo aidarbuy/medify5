@@ -1,0 +1,10 @@
+.view-enter,
+.view-enter-active,
+.view-leave,
+.view-leave-active,
+.angular-google-map-container {
+  height: 400px;
+  margin: 20px 0px;
+  padding: 0px;
+  width: 100%;
+}
