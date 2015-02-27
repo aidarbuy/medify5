@@ -3,13 +3,13 @@ angular.module('uiGmapgoogle-maps.providers')
 .factory('uiGmapMapScriptLoader', ['$q', 'uiGmapuuid', ($q, uuid) ->
       scriptId = undefined
 
-      getScriptUrl = (options)->
+      getScriptUrl = (options) ->
         if options.china
           return 'http://maps.google.cn/maps/api/js?'
         else
           return 'https://maps.googleapis.com/maps/api/js?'
 
-      load: (options)->
+      load: (options) ->
         deferred = $q.defer()
         # Early-resolve if google-maps-api is already in global-scope
         if angular.isDefined(window.google) and angular.isDefined(window.google.maps)
@@ -57,7 +57,7 @@ angular.module('uiGmapgoogle-maps.providers')
       return
 
     # Return an instance of the service
-    @$get = ['uiGmapMapScriptLoader' ,(loader) =>
+    @$get = ['uiGmapMapScriptLoader' , (loader) =>
       loader.load @options
     ]
     @

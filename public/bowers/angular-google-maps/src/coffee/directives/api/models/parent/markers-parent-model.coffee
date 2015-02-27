@@ -22,12 +22,12 @@ angular.module("uiGmapgoogle-maps.directives.api.models.parent")
             @doRebuildAll = if @scope.doRebuildAll? then @scope.doRebuildAll else false
             @setIdKey scope
             @scope.$watch 'doRebuildAll', (newValue, oldValue) =>
-              if (newValue != oldValue)
+              if (newValue ! = oldValue)
                 @doRebuildAll = newValue
 
             @modelsRendered = false if not scope.models? or scope.models.length == 0
             @scope.$watch 'models', (newValue, oldValue) =>
-              if !_.isEqual(newValue,oldValue) or not @modelsRendered
+              if !_.isEqual(newValue, oldValue) or not @modelsRendered
                 return if newValue.length == 0 and oldValue.length == 0
                 @modelsRendered = true
                 @onWatch('models', scope, newValue, oldValue)
@@ -44,14 +44,14 @@ angular.module("uiGmapgoogle-maps.directives.api.models.parent")
 
 
           onWatch: (propNameToWatch, scope, newValue, oldValue) =>
-            if propNameToWatch == "idKey" and newValue != oldValue
+            if propNameToWatch == "idKey" and newValue ! = oldValue
               @idKey = newValue
             if @doRebuildAll
               @reBuildMarkers(scope)
             else
               @pieceMeal(scope)
 
-          validateScope: (scope)=>
+          validateScope: (scope) =>
             modelsNotDefined = angular.isUndefined(scope.models) or scope.models == undefined
             if(modelsNotDefined)
               @$log.error(@constructor.name + ": no valid models attribute found")
@@ -65,15 +65,15 @@ angular.module("uiGmapgoogle-maps.directives.api.models.parent")
                   self = @
                   unless @origClusterEvents
                     @origClusterEvents =
-                      click: scope.clusterEvents?.click
-                      mouseout: scope.clusterEvents?.mouseout
-                      mouseover: scope.clusterEvents?.mouseover
+                      click: scope.clusterEvents? .click
+                      mouseout: scope.clusterEvents? .mouseout
+                      mouseover: scope.clusterEvents? .mouseover
                     _.extend scope.clusterEvents,
-                      click:(cluster) ->
+                      click: (cluster) ->
                         self.maybeExecMappedEvent cluster, 'click'
-                      mouseout:(cluster) ->
+                      mouseout: (cluster) ->
                         self.maybeExecMappedEvent cluster, 'mouseout'
-                      mouseover:(cluster) ->
+                      mouseover: (cluster) ->
                         self.maybeExecMappedEvent cluster, 'mouseover'
 
               unless @gMarkerManager
@@ -83,13 +83,13 @@ angular.module("uiGmapgoogle-maps.directives.api.models.parent")
 
             @gMarkerManager.clear()
 
-            return if @didQueueInitPromise(@,scope)
+            return if @didQueueInitPromise(@, scope)
 
             #allows graceful fallout of _async.each
             maybeCanceled = null
 
             _async.promiseLock @, uiGmapPromise.promiseTypes.create, 'createAllNew'
-            , ((canceledMsg) -> maybeCanceled= canceledMsg)
+            , ((canceledMsg) -> maybeCanceled = canceledMsg)
             , =>
               _async.each scope.models, (model) =>
                 @newChildMarker(model, scope)
@@ -103,9 +103,9 @@ angular.module("uiGmapgoogle-maps.directives.api.models.parent")
               , _async.chunkSizeFrom scope.chunk
 
           reBuildMarkers: (scope) =>
-            if(!scope.doRebuild and scope.doRebuild != undefined)
+            if(!scope.doRebuild and scope.doRebuild ! = undefined)
               return
-            if @scope.markerModels?.length
+            if @scope.markerModels? .length
               @onDestroy(scope).then =>
                 @createMarkersFromScratch(scope)
             else
@@ -151,14 +151,14 @@ angular.module("uiGmapgoogle-maps.directives.api.models.parent")
               @inProgress = false
               @reBuildMarkers(scope)
 
-          updateChild:(child, model) =>
+          updateChild: (child, model) =>
             unless model[@idKey]?
               @$log.error("Marker model has no id to assign a child to. This is required for performance. Please assign id, or redirect id to a different key.")
               return
             #set isInit to true to force redraw after all updates are processed
             child.updateModel model
 
-          newChildMarker: (model, scope)=>
+          newChildMarker: (model, scope) =>
             unless model[@idKey]?
               @$log.error("Marker model has no id to assign a child to. This is required for performance. Please assign id, or redirect id to a different key.")
               return
@@ -166,14 +166,14 @@ angular.module("uiGmapgoogle-maps.directives.api.models.parent")
             childScope = scope.$new(true)
             childScope.events = scope.events
             keys = {}
-            _.each IMarker.scopeKeys, (v,k) ->
+            _.each IMarker.scopeKeys, (v, k) ->
               keys[k] = scope[k]
             child = new MarkerChildModel(childScope, model, keys, @map, @DEFAULTS,
               @doClick, @gMarkerManager, doDrawSelf = false) #this is managed so child is not drawing itself
             @scope.markerModels.put(model[@idKey], child) #major change this makes model.id a requirement
             child
 
-          onDestroy: (scope)=>
+          onDestroy: (scope) =>
             _async.promiseLock @, uiGmapPromise.promiseTypes.delete, undefined, undefined, =>
               _async.each @scope.markerModels.values(), (model) =>
                 model.destroy(false) if model?
@@ -184,12 +184,12 @@ angular.module("uiGmapgoogle-maps.directives.api.models.parent")
                 @scope.markerModels = new PropMap()
                 @scope.markerModelsUpdate.updateCtr += 1
 
-          maybeExecMappedEvent:(cluster, fnName) ->
-            if _.isFunction @scope.clusterEvents?[fnName]
+          maybeExecMappedEvent: (cluster, fnName) ->
+            if _.isFunction @scope.clusterEvents? [fnName]
               pair = @mapClusterToMarkerModels cluster
-              @origClusterEvents[fnName](pair.cluster,pair.mapped) if @origClusterEvents[fnName]
+              @origClusterEvents[fnName](pair.cluster, pair.mapped) if @origClusterEvents[fnName]
 
-          mapClusterToMarkerModels:(cluster) ->
+          mapClusterToMarkerModels: (cluster) ->
             mapped = cluster.getMarkers().map (g) =>
               @scope.markerModels.get(g.key).model
             cluster: cluster

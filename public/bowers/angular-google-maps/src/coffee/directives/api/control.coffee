@@ -1,5 +1,5 @@
 angular.module("uiGmapgoogle-maps.directives.api")
-.factory "uiGmapControl", ["uiGmapIControl", "$http", "$templateCache", "$compile", "$controller",'uiGmapGoogleMapApi',
+.factory "uiGmapControl", ["uiGmapIControl", "$http", "$templateCache", "$compile", "$controller", 'uiGmapGoogleMapApi',
   (IControl, $http, $templateCache, $compile, $controller, GoogleMapApi) ->
     class Control extends IControl
       constructor: ->
@@ -23,7 +23,7 @@ angular.module("uiGmapgoogle-maps.directives.api")
           IControl.mapPromise(scope, ctrl).then (map) =>
             control = undefined
             controlDiv = angular.element '<div></div>'
-            $http.get(scope.template, { cache: $templateCache })
+            $http.get(scope.template, { cache: $templateCache } )
             .success (template) =>
               templateScope = scope.$new()
               controlDiv.append template

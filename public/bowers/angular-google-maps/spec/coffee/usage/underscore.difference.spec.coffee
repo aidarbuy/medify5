@@ -15,7 +15,7 @@ describe "uiGmapLodash.differenceObjects", ->
     module 'uiGmapgoogle-maps.extensions'
     inject (uiGmapLodash) =>
       subject = uiGmapLodash
-      
+
   describe "Comparing Arrays of Objects", ->
     describe "difference", ->
       describe "0 length", ->
@@ -59,7 +59,7 @@ describe "uiGmapLodash.differenceObjects", ->
           ]
           diffArray = @objArray
           index = @objArray.indexOf {a: 1, b: 1}
-          expect(index).toBe(-1)
+          expect(index).toBe( - 1)
           interArray = _.difference(@objArray, difArray)
           expect(interArray.length).toEqual(3)
 

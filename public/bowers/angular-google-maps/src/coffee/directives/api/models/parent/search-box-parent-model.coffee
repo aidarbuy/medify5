@@ -32,7 +32,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.parent')
                     if newValue.bounds?
                         @setBounds(newValue.bounds)
                     if newValue.visible?
-                        if @visible != newValue.visible
+                        if @visible ! = newValue.visible
                             @setVisibility(newValue.visible)
             , true)
 

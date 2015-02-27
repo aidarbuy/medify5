@@ -22,7 +22,7 @@ angular.module('uiGmapgoogle-maps.directives.api')
         events: '='
         zIndex: '=zindex'
         fit: '='
-        control:'=control'
+        control: '=control'
 
       DEFAULTS: {}
       $log: Logger

@@ -23,7 +23,7 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
     d = $q.defer()
     ohCrap = ->
       $timeout ->
-        if ctr != expect
+        if ctr ! = expect
           ohCrap()
         else
           d.resolve(promises())

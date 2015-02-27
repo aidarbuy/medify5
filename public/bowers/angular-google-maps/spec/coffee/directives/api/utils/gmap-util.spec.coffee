@@ -14,26 +14,26 @@ describe 'utils.gmap-util', ->
 
   describe 'should validate the path correctly', ->
     it 'latlong', ->
-      latlong = {longitude: 45, latitude: -27}
+      latlong = {longitude: 45, latitude: - 27}
       expect(@subject.validatePath([latlong, latlong])).toEqual(true)
       expect(@subject.validatePath([latlong])).toEqual(false)
     it 'empty array', ->
       expect(@subject.validatePath([])).toEqual(false)
     it 'array of invalid objects', ->
       expect(@subject.validatePath([
-        {},
+        {} ,
         {}
       ])).toEqual(false)
     it 'Polygon', ->
-      expect(@subject.validatePath({type: 'Polygon'})).toEqual(false)
-      expect(@subject.validatePath({type: 'Polygon', coordinates: [[1, 2] for [1..4]]})).toEqual(true)
-      expect(@subject.validatePath({type: 'Polygon', coordinates: [[1, 2] for [1..1]]})).toEqual(false)
+      expect(@subject.validatePath({type: 'Polygon'} )).toEqual(false)
+      expect(@subject.validatePath({type: 'Polygon', coordinates: [[1, 2] for [1..4]]} )).toEqual(true)
+      expect(@subject.validatePath({type: 'Polygon', coordinates: [[1, 2] for [1..1]]} )).toEqual(false)
     it 'Polygon', ->
-      expect(@subject.validatePath({type: 'LineString', coordinates: [1, 2] for [1..2]})).toEqual(true)
-      expect(@subject.validatePath({type: 'LineString', coordinates: [1, 2] for [1..1]})).toEqual(false)
-      expect(@subject.validatePath({type: 'LineString', coordinates: [] for [1..2]})).toEqual(false)
+      expect(@subject.validatePath({type: 'LineString', coordinates: [1, 2] for [1..2]} )).toEqual(true)
+      expect(@subject.validatePath({type: 'LineString', coordinates: [1, 2] for [1..1]} )).toEqual(false)
+      expect(@subject.validatePath({type: 'LineString', coordinates: [] for [1..2]} )).toEqual(false)
     it 'foo', ->
-      expect(@subject.validatePath({type: 'foo', coordinates: []})).toEqual(false)
+      expect(@subject.validatePath({type: 'foo', coordinates: []} )).toEqual(false)
 
 
   describe 'should validate coordinates correctly', ->
@@ -43,12 +43,12 @@ describe 'utils.gmap-util', ->
       expect(@subject.validateCoords([])).toEqual(false)
 
     it 'type:Point', ->
-      expect(@subject.validateCoords({type: 'Point', coordinates: [1, 2]})).toEqual(true)
-      expect(@subject.validateCoords({type: 'Point', coordinates: []})).toEqual(false)
+      expect(@subject.validateCoords({type: 'Point', coordinates: [1, 2]} )).toEqual(true)
+      expect(@subject.validateCoords({type: 'Point', coordinates: []} )).toEqual(false)
     it 'type:foo, no lat lon', ->
-      expect(@subject.validateCoords({type: 'foo', coordinates: []})).toEqual(false)
+      expect(@subject.validateCoords({type: 'foo', coordinates: []} )).toEqual(false)
     it 'type:foo, w lat lon', ->
-      expect(@subject.validateCoords( type: 'foo', latitude: 45, longitude:150 )).toEqual true
+      expect(@subject.validateCoords( type: 'foo', latitude: 45, longitude: 150 )).toEqual true
 
   it 'should evaluate truthiness correctly', ->
     expect(@subject.isTrue(true)).toEqual(true)
@@ -72,24 +72,24 @@ describe 'utils.gmap-util', ->
     expect(@subject.isFalse(false)).toEqual(false)
 
   it 'should convert path points correctly', ->
-    latlong = {longitude: 45, latitude: -27}
+    latlong = {longitude: 45, latitude: - 27}
     expect(@subject.convertPathPoints([]).getLength()).toEqual(0)
     expect(@subject.convertPathPoints([latlong]).getLength()).toEqual(1)
-    expect(@subject.convertPathPoints({type: 'Polygon', coordinates: [[1, 2] for [1..4]]}).getLength()).toEqual(4)
-    expect(@subject.convertPathPoints({type: 'LineString', coordinates: [1, 2] for [1..4]}).getLength()).toEqual(4)
+    expect(@subject.convertPathPoints({type: 'Polygon', coordinates: [[1, 2] for [1..4]]} ).getLength()).toEqual(4)
+    expect(@subject.convertPathPoints({type: 'LineString', coordinates: [1, 2] for [1..4]} ).getLength()).toEqual(4)
 
   it 'should increase coverage', ->
-    latlong = {longitude: 45, latitude: -27}
+    latlong = {longitude: 45, latitude: - 27}
     @subject.getCoords(latlong)
     @subject.getLabelPositionPoint('0 1')
-    @subject.extendMapBounds({fitBounds: (bounds) -> return undefined}, [])
+    @subject.extendMapBounds({fitBounds: (bounds) -> return undefined} , [])
 
   it '(getLabelPositionPoint) should convert decimal coordinates separated by a space into a map Point object', ->
     testCases = [
       { input: '22 0', expected: { x: 22, y: 0 } }
       { input: '1 2', expected: { x: 1, y: 2 } }
       { input: '1.0 2.3', expected: { x: 1.0, y: 2.3 } }
-      { input: '-1 -2', expected: { x: -1, y: -2 } }
+      { input: '-1 -2', expected: { x: - 1, y: - 2 } }
     ]
     testCases.forEach (testCase ) =>
       result = @subject.getLabelPositionPoint(testCase.input)
@@ -102,11 +102,11 @@ describe 'utils.gmap-util', ->
       'a b'
       '1,2'
     ]
-    testCases.forEach (testCase)=>
+    testCases.forEach (testCase) =>
       result = @subject.getLabelPositionPoint(testCase.input)
 
   it 'should correctly fetch object values using dot-notation', ->
-    object = { foo: { sea: 'hawks' }}
+    object = { foo: { sea: 'hawks' } }
     expect(@subject.getPath(object, 'foo.sea')).toEqual('hawks')
     expect(@subject.getPath(object, 'foo.sea.birds')).toEqual(undefined)
     expect(@subject.getPath(object, 'boo.hoo')).toEqual(undefined)

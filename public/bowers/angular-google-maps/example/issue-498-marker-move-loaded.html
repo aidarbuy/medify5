@@ -17,7 +17,7 @@
         <!--marker for clicked position can not put google.map.animations.BOUNCE , since it is not initiaized yet-->
         <div ng-init="opts = {animation:1}">
             <ui-gmap-marker coords="map.clickedMarker" options="opts" idkey='map.clickedMarker.id'>
-                <ui-gmap-marker-label content="map.clickedMarker.title" anchor="100 -10" class="marker-labels"/>
+                <ui-gmap-marker-label content="map.clickedMarker.title" anchor="100 -10" class="marker-labels" />
                 <ui-gmap-window isIconVisibleOnClick="true" options="map.infoWindowWithCustomClass.options">This is my clicked marker!
                     <p class="muted">My marker will reappear when you close me.</p>
                 </ui-gmap-window>
@@ -26,4 +26,5 @@
     </ui-gmap-google-map>
 </body>
 <script src="assets/scripts/controllers/issue-498-marker-move-loaded.js"></script>
+
 </html>

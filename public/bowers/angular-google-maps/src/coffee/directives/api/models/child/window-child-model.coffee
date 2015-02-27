@@ -14,7 +14,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.child')
           @clonedModel = _.clone @model, true
 
           @getGmarker = ->
-            @markerScope?.getGMarker() if @markerScope?['getGMarker']?
+            @markerScope? .getGMarker() if @markerScope? ['getGMarker']?
 
           @listeners = []
           @createGWin()
@@ -47,7 +47,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.child')
           @scope.$watch =>
             return unless @element or @html
             if @html isnt @element.html() and @gWin
-              @opts?.content = undefined
+              @opts? .content = undefined
               wasOpen = @gWin.isOpen()
               @remove()
               @createGWin(wasOpen)
@@ -70,7 +70,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.child')
               @gWin = new window.InfoBox @opts
             else
               @gWin = new google.maps.InfoWindow @opts
-            @handleClick(@scope?.options?.forceClick or isOpen)
+            @handleClick(@scope? .options? .forceClick or isOpen)
             @doShow()
 
             # Set visibility of marker back to what it was before opening the window
@@ -136,7 +136,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.child')
 
           click() if forceClick
           if maybeMarker
-            @listeners = @listeners.concat @setEvents maybeMarker, {events: {click: click}}, @model
+            @listeners = @listeners.concat @setEvents maybeMarker, {events: {click: click} } , @model
 
         showWindow: =>
           if @gWin?
@@ -148,10 +148,10 @@ angular.module('uiGmapgoogle-maps.directives.api.models.child')
                 return unless pos
                 @gWin.open @mapCtrl, maybeMarker
                 isOpen = @gWin.isOpen()
-                @model.show = isOpen if @model.show != isOpen
+                @model.show = isOpen if @model.show ! = isOpen
 
             if @scope.templateUrl
-              $http.get(@scope.templateUrl, { cache: $templateCache }).then (content) =>
+              $http.get(@scope.templateUrl, { cache: $templateCache } ).then (content) =>
                 templateScope = @scope.$new()
                 if angular.isDefined @scope.templateParameter
                   templateScope.parameter = @scope.templateParameter
@@ -186,9 +186,9 @@ angular.module('uiGmapgoogle-maps.directives.api.models.child')
           delete @gWin
           delete @opts
 
-        destroy: (manualOverride = false)=>
+        destroy: (manualOverride = false) =>
           @remove()
-          if @scope? and not @scope?.$$destroyed and (@needToManualDestroy or manualOverride)
+          if @scope? and not @scope? .$$destroyed and (@needToManualDestroy or manualOverride)
             @scope.$destroy()
 
       WindowChildModel

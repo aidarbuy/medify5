@@ -3,7 +3,7 @@ angular.module('uiGmapgoogle-maps.directives.api')
   'uiGmapIPolyline', '$timeout', 'uiGmaparray-sync', 'uiGmapPolylinesParentModel',
     (IPolyline, $timeout, arraySync, PolylinesParentModel) ->
         class Polylines extends IPolyline
-            constructor:() ->
+            constructor: () ->
                 super()
                 @scope.idKey = '=idkey' #id key to bind to that makes a model unique, if it does not exist default to rebuilding all markers
                 @scope.models = '=models' #if undefined it will try get a markers models

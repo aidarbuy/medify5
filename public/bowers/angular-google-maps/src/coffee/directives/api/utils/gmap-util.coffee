@@ -31,9 +31,9 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
 
     if _.isArray(coords)
       return true if coords.length is 2
-    else if coords? and coords?.type
+    else if coords? and coords? .type
       return true if coords.type is 'Point' and _.isArray(coords.coordinates) and coords.coordinates.length is 2
-    return true if coords and angular.isDefined coords?.latitude and angular.isDefined coords?.longitude
+    return true if coords and angular.isDefined coords? .latitude and angular.isDefined coords? .longitude
     false
   #END Private Methods
 
@@ -64,17 +64,17 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
 
   createWindowOptions: (gMarker, scope, content, defaults) ->
     if content? and defaults? and $compile?
-      options = angular.extend {}, defaults,
+      options = angular.extend {} , defaults,
         content: @buildContent(scope, defaults, content),
         position: if defaults.position?
         then defaults.position else if angular.isObject(gMarker)
         then gMarker.getPosition() else getCoords(scope.coords)
-      if gMarker? and !options?.pixelOffset?
+      if gMarker? and !options? .pixelOffset?
         #if we have a marker, center the window above
         if !options.boxClass?
           # options.pixelOffset = height:-40, width:0 (using anchor)
         else #it is an infoBox center it below
-          options.pixelOffset = height:0, width:-2
+          options.pixelOffset = height: 0, width: - 2
       options
     else
       unless defaults
@@ -104,7 +104,7 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
     angular.isDefined(val) and val isnt null and val is true or val is '1' or val is 'y' or val is 'true'
 
   isFalse: (value) ->
-    ['false', 'FALSE', 0, 'n', 'N', 'no', 'NO'].indexOf(value) != -1
+    ['false', 'FALSE', 0, 'n', 'N', 'no', 'NO'].indexOf(value) ! = - 1
 
   getCoords: getCoords
 
@@ -142,7 +142,7 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
           if polygon[0].length > this.max
             this.max = polygon[0].length
             this.index = index
-        , trackMaxVertices);
+        , trackMaxVertices) ;
 
         #TODO: Properly support MultiPolygons
         polygon = path.coordinates[trackMaxVertices.index]
@@ -157,7 +157,7 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
         return false
 
       while i < array.length
-        return false if array[i].length != 2
+        return false if array[i].length ! = 2
         i++
 
       true
@@ -191,7 +191,7 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
           if polygon[0].length > this.max
             this.max = polygon[0].length
             this.index = index
-        , trackMaxVertices);
+        , trackMaxVertices) ;
 
         #TODO: Properly support MultiPolygons
         array = path.coordinates[trackMaxVertices.index][0]
@@ -229,7 +229,7 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
 
   convertBoundPoints: (bounds) ->
     result = new google.maps.LatLngBounds new google.maps.LatLng(bounds.sw.latitude, bounds.sw.longitude)
-      ,new google.maps.LatLng(bounds.ne.latitude, bounds.ne.longitude)
+      , new google.maps.LatLng(bounds.ne.latitude, bounds.ne.longitude)
     result
 
   fitMapBounds: (map, bounds) ->

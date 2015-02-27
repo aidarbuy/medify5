@@ -13,19 +13,18 @@ body, html {
     width: 50%;
     position: absolute;
 }
-
 .middle {
     display: table;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
 }
-
 /*
 Use bootstraps container w/ some overrides, nice thing about this on bootstrap is there is
 psuedo element with clearfix and display: table; , all after (which is why I know .middle works above)
 */
-.container{
+
+.container {
     width: 50%;
     padding-left: 0;
     padding-right: 0;

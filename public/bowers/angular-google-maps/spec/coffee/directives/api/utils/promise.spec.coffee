@@ -7,8 +7,8 @@ describe 'uiGmapPromise', ->
     fn()
     if times
       _.range(times).forEach -> # i would like to say that it sucks that I have to do this.. (angular)
-        timeout?.flush()
-    rootScope?.$apply()
+        timeout? .flush()
+    rootScope? .$apply()
 
   beforeEach ->
     module 'uiGmapgoogle-maps'
@@ -23,8 +23,8 @@ describe 'uiGmapPromise', ->
     @subject = null
 
   it 'exists', ->
-    expect(@subject).toBeDefined()    
-        
+    expect(@subject).toBeDefined()
+
   it 'resolves immediately', (done) ->
     digest =>
       @subject.resolve().then ->

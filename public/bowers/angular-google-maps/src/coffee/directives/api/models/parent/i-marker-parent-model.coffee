@@ -1,10 +1,10 @@
 ###
-	- interface for all markers to derrive from
- 	- to enforce a minimum set of requirements
- 		- attributes
- 			- coords
- 			- icon
-		- implementation needed on watches
+	 - interface for all markers to derrive from
+ 	 - to enforce a minimum set of requirements
+ 		 - attributes
+ 			 - coords
+ 			 - icon
+		 - implementation needed on watches
 ###
 angular.module("uiGmapgoogle-maps.directives.api.models.parent")
 .factory "uiGmapIMarkerParentModel", ["uiGmapModelKey","uiGmapLogger", (ModelKey, Logger) ->
@@ -25,7 +25,7 @@ angular.module("uiGmapgoogle-maps.directives.api.models.parent")
       scope.$on "$destroy", =>
         @onDestroy(scope)
 
-    validateScope: (scope)=>
+    validateScope: (scope) =>
       unless scope?
         @$log.error(@constructor.name + ": invalid scope used")
         return false
@@ -37,7 +37,7 @@ angular.module("uiGmapgoogle-maps.directives.api.models.parent")
 
     watch: (propNameToWatch, scope, equalityCheck = true) =>
       scope.$watch propNameToWatch, (newValue, oldValue) =>
-        if ! _.isEqual newValue,oldValue
+        if ! _.isEqual newValue, oldValue
           @onWatch(propNameToWatch, scope, newValue, oldValue)
       , equalityCheck
 

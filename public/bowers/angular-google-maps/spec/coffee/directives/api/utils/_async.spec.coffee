@@ -7,8 +7,8 @@ describe "_async", ->
     fn()
     if times
       _.range(times).forEach -> # i would like to say that it sucks that I have to do this.. (angular)
-        timeout?.flush()
-    rootScope?.$apply()
+        timeout? .flush()
+    rootScope? .$apply()
 
   beforeEach ->
     module "uiGmapgoogle-maps"
@@ -42,7 +42,7 @@ describe "_async", ->
   it "handle callback passes an index", (done) ->
     digest =>
       chunkHit = false
-      @subject.each [1], (thing, index)->
+      @subject.each [1], (thing, index) ->
         chunkHit = true
         expect(thing).toEqual 1
         expect(index).toEqual 0
@@ -100,7 +100,7 @@ describe "_async", ->
         expect(test[999]).toEqual("$1000")
         expect(test.length).toEqual(known.length)
         expect(test).toEqual(
-          _.map known, (n)->
+          _.map known, (n) ->
             n += 1
             "$#{n.toString()}"
         )

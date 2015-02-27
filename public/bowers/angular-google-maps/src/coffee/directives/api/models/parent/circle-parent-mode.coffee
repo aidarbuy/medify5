@@ -11,12 +11,12 @@ angular.module('uiGmapgoogle-maps.directives.api.models.parent')
         new google.maps.Circle @buildOpts GmapUtil.getCoords(scope.center), scope.radius
 
       @setMyOptions = (newVals, oldVals) =>
-        unless _.isEqual newVals,oldVals
+        unless _.isEqual newVals, oldVals
           circle.setOptions @buildOpts GmapUtil.getCoords(scope.center), scope.radius
 
       @props = @props.concat [
-        {prop: 'center',isColl: true}
-        {prop: 'fill',isColl: true}
+        {prop: 'center', isColl: true}
+        {prop: 'fill', isColl: true}
         'radius'
       ]
       @watchProps()

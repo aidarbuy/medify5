@@ -1,8 +1,8 @@
 ###
 @authors
-Nicholas McCready - https://twitter.com/nmccready
-Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawing-freehand  , &
-  http://jsfiddle.net/YsQdh/88/
+Nicholas McCready - https: //twitter.com/nmccready
+Original idea from: http: //stackoverflow.com/questions/22758950/google - map - drawing - freehand , &
+  http: //jsfiddle.net/YsQdh/88/
 ###
 angular.module('uiGmapgoogle-maps.directives.api.models.child')
 .factory 'uiGmapDrawFreeHandChildModel', ['uiGmapLogger', '$q', ($log, $q) ->
@@ -36,7 +36,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.child')
         disableDoubleClickZoom: true
     #freeze map to make drawing easy (need to drag to draw .. instead of moving the map)
     enable = =>
-      @deferred?.resolve()
+      @deferred? .resolve()
       _.defer =>
         @map.setOptions _.extend @oldOptions, defaultOptions
 

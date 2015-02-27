@@ -32,15 +32,15 @@ describe 'uiGmapDragZoom spec', ->
 
   it 'should be called from creation', (done) ->
     html = """
-        <ui-gmap-google-map draggable="true" center="map.center" zoom="map.zoom">
-            <ui-gmap-drag-zoom keyboardkey="'alt'" spec="spec"></ui-gmap-drag-zoom>
-        </ui-gmap-google-map>
+         < ui - gmap - google - map draggable = "true" center="map.center" zoom="map.zoom" >
+             < ui - gmap - drag - zoom keyboardkey = "'alt'" spec="spec"></ui - gmap - drag - zoom >
+        </ui - gmap - google - map >
              """
     scope = rootScope.$new()
     scope.items = []
     scope.map = {}
     scope.map.zoom = 12
-    scope.map.center = {longitude: 47, latitude: -27}
+    scope.map.center = {longitude: 47, latitude: - 27}
     scope.spec =
       enableKeyDragZoom: ->
 

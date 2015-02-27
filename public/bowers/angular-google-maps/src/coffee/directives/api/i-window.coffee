@@ -5,11 +5,11 @@ angular.module('uiGmapgoogle-maps.directives.api')
     class IWindow extends BaseObject
       @include ChildEvents
       @extend CtrlHandle
-      constructor:  ->
+      constructor: ->
         @restrict = 'EMA'
         @template = undefined
         @transclude = true
-        @priority = -100
+        @priority = - 100
         @require = '^' + 'uiGmapGoogleMap'
         @replace = true
         @scope =

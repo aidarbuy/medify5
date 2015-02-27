@@ -3,9 +3,9 @@ angular.module('uiGmapgoogle-maps.directives.api.options')
 [ 'uiGmapLogger', 'uiGmapGmapUtil', ($log, GmapUtil) ->
   _.extend GmapUtil,
     createOptions: (coords, icon, defaults, map) ->
-      defaults ?= {}
+      defaults ? = {}
 
-      opts = angular.extend {}, defaults,
+      opts = angular.extend {} , defaults,
         position: if defaults.position? then defaults.position else GmapUtil.getCoords coords
         visible: if defaults.visible? then defaults.visible else GmapUtil.validateCoords coords
 

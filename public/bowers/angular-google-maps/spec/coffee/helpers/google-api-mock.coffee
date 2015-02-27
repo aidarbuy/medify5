@@ -5,11 +5,11 @@ angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
       @map
     setMap: (m) =>
       @map = m
-    setOptions: (o)=>
+    setOptions: (o) =>
       @opts = o
 
   class DraggableObject extends MapObject
-    setDraggable: (bool)=>
+    setDraggable: (bool) =>
       @draggable = bool
     getDraggable: =>
       @draggable
@@ -21,7 +21,7 @@ angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
       @visible
 
   class PositionObject extends MapObject
-    setPosition:(position) =>
+    setPosition: (position) =>
       @position
     getPosition: =>
       @position
@@ -46,7 +46,7 @@ angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
 
   getLatLng = ->
     class LatLng
-      constructor: (@y,@x, nowrap) ->
+      constructor: (@y, @x, nowrap) ->
       lat: =>
         @y
       lng: =>
@@ -70,14 +70,14 @@ angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
           'map','visible', 'position'].forEach (o) =>
             @[o] = opts[o]
         Marker.instances += 1
-        if window?.google?.maps?.event?
+        if window? .google? .maps? .event?
           window.google.maps.event.fireAllListeners 'creation', @
 
-      setOptions: (o)=>
+      setOptions: (o) =>
         super(o)
-        if o?.position?
+        if o? .position?
           @position = o.position
-      setAnimation:(obj) =>
+      setAnimation: (obj) =>
         @animation = obj
       getAnimation: =>
         @animation
@@ -89,7 +89,7 @@ angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
         @clickable = bool
       getClickable: =>
         @clickable
-      setZIndex:(z) =>
+      setZIndex: (z) =>
         @zIndex = z
       getZIndex: =>
         @zIndex
@@ -127,13 +127,13 @@ angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
     Map::setOptions = -> return
     Map::setZoom = -> return
     Map::setCenter = -> return
-    Map::getCoords = -> return {latitude: 47, longitude: -27} unless Map.getCoords?
+    Map::getCoords = -> return {latitude: 47, longitude: - 27} unless Map.getCoords?
     Map::getBounds = ->
       unless Map.getBounds?
         getNorthEast: ->
-          google.maps.LatLng(47,27)
+          google.maps.LatLng(47, 27)
         getSouthWest: ->
-          google.maps.LatLng(89,100)
+          google.maps.LatLng(89, 100)
     return Map
 
 
@@ -157,11 +157,11 @@ angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
         @mandatoryStyles = obj
       getMandatoryStyles: =>
         @mandatoryStyles
-      setStyles:(obj) =>
+      setStyles: (obj) =>
         @styles = obj
       getStyles: =>
         @styles
-      setContent:(content) =>
+      setContent: (content) =>
         @content = content
       getContent: =>
         @content
@@ -185,9 +185,9 @@ angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
         @editable
       getPath: =>
         @path
-      setEditable: (bool)=>
+      setEditable: (bool) =>
         @editable = bool
-      setPath: (array)=>
+      setPath: (array) =>
         @path = array
 
   getMVCArray = ->
@@ -202,15 +202,15 @@ angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
         @length = 0
       getArray: =>
         @
-      getAt:(i) =>
+      getAt: (i) =>
         @[i]
       getLength: =>
         @length
-      insertAt:(i, elem) =>
+      insertAt: (i, elem) =>
         @splice(i, 0, elem)
-      removeAt:(i) ->
-        @splice(i,1)
-      setAt:(i, elem) ->
+      removeAt: (i) ->
+        @splice(i, 1)
+      setAt: (i, elem) ->
         @[i] = elem
 
   class GoogleApiMock
@@ -235,7 +235,7 @@ angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
         @mockPlaces
         @mockSearchBox
       ]
-      @initAll = -> @mocks.forEach (fn) -> fn?()
+      @initAll = -> @mocks.forEach (fn) -> fn? ()
 
     mockAPI: ->
       window.google = {}
@@ -266,7 +266,7 @@ angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
       window.google.maps.LatLng = unless yours then getLatLng() else yours
 
     mockLatLngBounds: (LatLngBounds = () -> return) ->
-      if not (LatLngBounds.extend?)
+      if not (LatLngBounds.extend? )
         LatLngBounds.prototype.extend = () -> return
 
       window.google.maps.LatLngBounds = LatLngBounds
@@ -296,22 +296,22 @@ angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
         BOTTOM_RIGHT: 'BOTTOM_RIGHT'
       window.google.maps.ControlPosition = ControlPosition
 
-    mockAnimation: (Animation = {BOUNCE: 'bounce'}) ->
+    mockAnimation: (Animation = {BOUNCE: 'bounce'} ) ->
       window.google.maps.Animation = Animation
 
-    mockMapTypeId: (MapTypeId = {ROADMAP: 'roadmap'}) ->
+    mockMapTypeId: (MapTypeId = {ROADMAP: 'roadmap'} ) ->
       window.google.maps.MapTypeId = MapTypeId
 
     mockOverlayView: (OverlayView = class OverlayView
       setMap: () ->) ->
       window.google.maps.OverlayView = OverlayView
 
-    mockEvent: (event = {}) ->
+    mockEvent: (event = {} ) ->
       listeners = []
       #mocking google maps event listener
       if not event.addListener
         event.addListener = (thing, eventName, callBack) ->
-          found = _.find listeners, (obj)->
+          found = _.find listeners, (obj) ->
             obj.obj == thing
           unless found?
             toPush = {}
@@ -333,14 +333,14 @@ angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
       if not event.removeListener
         event.removeListener = (item) ->
           index = listeners.indexOf(item)
-          if index != -1
+          if index ! = - 1
             listeners.splice(index)
 
       unless event.fireListener
         event.fireListener = (thing, eventName) ->
-          found = _.find listeners, (obj)->
+          found = _.find listeners, (obj) ->
             obj.obj == thing
-          found.events[eventName](found.obj) if found? and found?.events[eventName]?
+          found.events[eventName](found.obj) if found? and found? .events[eventName]?
 
       unless event.normalizedEvents
         event.normalizedEvents = ->
@@ -354,7 +354,7 @@ angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
 
       unless event.fireAllListeners
         event.fireAllListeners = (eventName, state) ->
-          listeners.forEach (obj)->
+          listeners.forEach (obj) ->
             if obj.events[eventName]?
               obj.events[eventName](state)
 
@@ -370,7 +370,7 @@ angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
     mockMVCArray: (impl = getMVCArray()) ->
       window.google.maps.MVCArray = impl
 
-    mockPoint: (Point = (x, y) -> return {x: x, y: y}) ->
+    mockPoint: (Point = (x, y) -> return {x: x, y: y} ) ->
       window.google.maps.Point = Point
 
     mockPolyline: (impl = getPolyline()) ->

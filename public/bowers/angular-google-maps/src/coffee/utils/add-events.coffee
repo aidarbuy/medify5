@@ -3,10 +3,10 @@ angular.module('uiGmapgoogle-maps')
   addEvent = (target, eventName, handler) ->
     google.maps.event.addListener target, eventName, ->
       handler.apply this, arguments
-      $timeout((->),true)
+      $timeout((->), true)
 
   addEvents = (target, eventName, handler) ->
-    return addEvent(target, eventName, handler)  if handler
+    return addEvent(target, eventName, handler) if handler
     remove = []
     angular.forEach eventName, (_handler, key) ->
       remove.push addEvent(target, key, _handler)

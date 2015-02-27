@@ -1,5 +1,5 @@
 ###
-    Simple Object Map with a lenght property to make it easy to track length/size
+    Simple Object Map with a lenght property to make it easy to track length / size
 ###
 propsToPop = ['get', 'put', 'remove', 'values', 'keys', 'length', 'push', 'didValueStateChange', 'didKeyStateChange',
   'slice', 'removeAll', 'allVals', 'allKeys', 'stateChanged']
@@ -12,7 +12,7 @@ class window.PropMap
     @allVals = []
     @allKeys = []
 
-  get: (key)=>
+  get: (key) =>
     @dict[key]
 
   stateChanged: =>
@@ -20,13 +20,13 @@ class window.PropMap
     @didKeysStateChange = true
 
   #modify map through put or remove to keep track of length , otherwise the state will be incorrect
-  put: (key, value)=>
+  put: (key, value) =>
     unless @get(key)? #if we are adding something new increment length
       @length++
     @stateChanged()
     @dict[key] = value
 
-  remove: (key, isSafe = false)=>
+  remove: (key, isSafe = false) =>
     return undefined if isSafe and not @get key
     value = @dict[key]
     delete @dict[key]
@@ -38,7 +38,7 @@ class window.PropMap
     return @['all' + str] unless @["did#{str}StateChange"]
     vals = []
     keys = []
-    _.each @dict, (v, k)->
+    _.each @dict, (v, k) ->
       vals.push v
       keys.push k
     @didKeysStateChange = false

@@ -1,15 +1,15 @@
 angular.module('uiGmapgoogle-maps.directives.api.utils')
 .factory 'uiGmapModelsWatcher', [
   'uiGmapLogger', 'uiGmap_async', '$q', 'uiGmapPromise',
-  (Logger,_async, $q, uiGmapPromise) ->
+  (Logger, _async, $q, uiGmapPromise) ->
 
-    didQueueInitPromise:(existingPiecesObj, scope) ->
+    didQueueInitPromise: (existingPiecesObj, scope) ->
       if scope.models.length == 0
         _async.promiseLock existingPiecesObj, uiGmapPromise.promiseTypes.init, null , null, (=> uiGmapPromise.resolve())
         return true
       false
 
-    figureOutState: (idKey, scope, childObjects, comparison, callBack)->
+    figureOutState: (idKey, scope, childObjects, comparison, callBack) ->
       adds = [] #models to add or update
       mappedScopeModelIds = {}
       removals = [] #childModels to remove
@@ -28,7 +28,7 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
                 child: child
         else
           Logger.error ''' id missing for model #{m.toString()},
-            can not use do comparison/insertion'''
+            can not use do comparison / insertion'''
       children = childObjects.values()
       children.forEach (c) ->
         unless c?

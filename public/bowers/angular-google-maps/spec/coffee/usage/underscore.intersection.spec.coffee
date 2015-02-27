@@ -59,7 +59,7 @@ describe "uiGmapLodash.intersectionObjects", ->
           ]
           diffArray = @objArray
           index = @objArray.indexOf {a: 1, b: 1}
-          expect(index).toBe(-1)
+          expect(index).toBe( - 1)
           interArray = _.intersection(@objArray, difArray)
           expect(interArray.length).toEqual(0)
 

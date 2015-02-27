@@ -19,10 +19,10 @@ describe 'uiGmapIMarkerParentModel', ->
   it 'should instantiate', ->
     @scope.coords = {
       latitude: 47,
-      longitude: -27
+      longitude: - 27
     }
     subject = new @IMarkerParentModel(@scope, @ele, @attrs, null, @$timeout)
-    expect(subject?).toEqual(true)
+    expect(subject? ).toEqual(true)
 
   it 'should validate a scope correctly', ->
     try
@@ -33,7 +33,7 @@ describe 'uiGmapIMarkerParentModel', ->
 
     @scope.coords = {
       latitude: 47,
-      longitude: -27
+      longitude: - 27
     }
     @subject = new @IMarkerParentModel(@scope, @ele, @attrs, null, @$timeout)
     expect(@subject.validateScope(@scope)).toEqual(true)
@@ -46,7 +46,7 @@ describe 'uiGmapIMarkerParentModel', ->
 
     @scope.coords = {
       latitude: 47,
-      longitude: -27
+      longitude: - 27
     }
 
     @subject = new @IMarkerParentModel(@scope, @ele, @attrs, null, @$timeout)
@@ -56,7 +56,7 @@ describe 'uiGmapIMarkerParentModel', ->
     beforeEach ->
       @scope.coords = {
         latitude: 47,
-        longitude: -27
+        longitude: - 27
       }
       @subject = new @IMarkerParentModel(@scope, @ele, @attrs, null, @$timeout)
 

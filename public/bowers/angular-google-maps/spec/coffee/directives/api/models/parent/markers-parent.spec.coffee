@@ -13,7 +13,7 @@ xdescribe 'uiGmapMarkersParentModel', ->
           @drawCalled++
         clear: () ->
           @clearCalled++
-        fit:() ->
+        fit: () ->
           @fitCalled++
 
       class ClustererMarkerManager extends MarkerManager
@@ -51,19 +51,19 @@ xdescribe 'uiGmapMarkersParentModel', ->
     @subject = new @MarkersParentModel(@scope, @ele, @attrs, @map, @$timeout)
 
   it 'should instantiate', ->
-    expect(@subject?).toEqual(true)
+    expect(@subject? ).toEqual(true)
 
   it 'should validate a scope correctly', ->
     #XXX: Should this really validate as true if no models is set?
     expect(@subject.validateScope(@scope)).toEqual(true)
     @scope.models = [{
       latitude: 47,
-      longitude: -27
-    }]
+      longitude: - 27
+    } ]
     expect(@subject.validateScope(@scope)).toEqual(false)
     @scope.coords = {
       latitude: 47,
-      longitude: -27
+      longitude: - 27
     }
     expect(@subject.validateScope(@scope)).toEqual(true)
 
@@ -153,7 +153,7 @@ xdescribe 'uiGmapMarkersParentModel', ->
 
     it 'should call newChildMarker for each model and fit should not be called', ->
       @scope.models = [
-        {}, {}
+        {} , {}
       ]
       @subject.createMarkersFromScratch(@scope)
       expect(@subject.newChildMarker.calls.length).toEqual(2)
@@ -202,12 +202,12 @@ xdescribe 'uiGmapMarkersParentModel', ->
 
   describe 'newChildMarker', ->
     it 'should return undefined, but call constructor', ->
-      expect(@subject.newChildMarker({}, @scope)).toEqual(undefined)
+      expect(@subject.newChildMarker({} , @scope)).toEqual(undefined)
 
     it 'should return a new childMarker', ->
       model = {}
       model[@subject.idKey] = 'foo'
-      @scope.markerModels = {put :->}
+      @scope.markerModels = {put : ->}
       spyOn(@scope.markerModels, 'put')
       child = @subject.newChildMarker(model, @scope)
       expect(child.constructed).toEqual(true)

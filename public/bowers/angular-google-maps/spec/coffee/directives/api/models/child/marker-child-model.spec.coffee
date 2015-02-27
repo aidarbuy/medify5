@@ -33,8 +33,8 @@ describe 'uiGmapMarkerChildModel', ->
         scope.coords = @coordsKey
         scope.options = @optionsKey
         mgr = new MarkerManager(document.gMap, undefined, undefined)
-        @subject = new MarkerChildModel(scope, @model, scope, document.gMap, defaults = {},
-          doClick = (()->), mgr)
+        @subject = new MarkerChildModel(scope, @model, scope, document.gMap, defaults = {} ,
+          doClick = (() ->), mgr)
     ]
 
 
@@ -77,7 +77,7 @@ describe 'uiGmapMarkerChildModel', ->
     beforeEach(->
       @gSetterCalled = false
       @isInit = false
-      @gSetter = (scope)=>
+      @gSetter = (scope) =>
         @gSetterCalled = true
     )
     it 'oldModel undefined, isInit false - changes scope\'s models value, and calls gSetter ', ->

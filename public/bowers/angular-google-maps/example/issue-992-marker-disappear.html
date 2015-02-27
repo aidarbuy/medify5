@@ -13,7 +13,7 @@
     <style type="text/css">
         html,
         body,
-            /*     #map_canvas {
+        /*     #map_canvas {
               height: 100%;
               width: 100%;
               margin: 0px;
@@ -21,6 +21,7 @@
             #map_canvas {
               position: relative;
             } */
+        
         .angular-google-map-container {
             width: 100%;
             height: 600px;
@@ -29,32 +30,32 @@
             position: absolute;
             top: 30px;
             right: 30px;
-            width:100px;
-            height:100px;
-            background-color:#cc0000;
+            width: 100px;
+            height: 100px;
+            background-color: #cc0000;
             z-index: 2;
         }
     </style>
 </head>
 
 <body>
-<div id="map_canvas" ng-controller="mainCtrl">
-    <button class="testbtn" ng-click="updateMarkerLocation()">
-        update marker position
+    <div id="map_canvas" ng-controller="mainCtrl">
+        <button class="testbtn" ng-click="updateMarkerLocation()">
+            update marker position
 
-    </button>
-    <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
-        <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
-        </ui-gmap-marker>
-    </ui-gmap-google-map>
-    <div ng-cloak>
-        <ul>
-            <li>coords update ctr: {{coordsUpdates}}</li>
-            <li>dynamic move ctr: {{dynamicMoveCtr}}</li>
-        </ul>
+        </button>
+        <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
+            <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+            </ui-gmap-marker>
+        </ui-gmap-google-map>
+        <div ng-cloak>
+            <ul>
+                <li>coords update ctr: {{coordsUpdates}}</li>
+                <li>dynamic move ctr: {{dynamicMoveCtr}}</li>
+            </ul>
+        </div>
     </div>
-</div>
-<!--example-->
+    <!--example-->
 </body>
 
 </html>

@@ -8,20 +8,20 @@ angular.module("uiGmapgoogle-maps.directives.api")
         @template = '<span class="angular-google-map-marker" ng-transclude></span>'
         $log.info @
 
-      controller: ['$scope', '$element', ($scope, $element)  ->
+      controller: ['$scope', '$element', ($scope, $element) ->
         $scope.ctrlType = 'Marker'
         _.extend @, IMarker.handle($scope, $element)
       ]
 
-      link:(scope, element, attrs, ctrl) =>
+      link: (scope, element, attrs, ctrl) =>
         mapPromise = IMarker.mapPromise(scope, ctrl)
         mapPromise.then (map) =>
           gMarkerManager = new MarkerManager map
 
-          keys = _.object(IMarker.keys,IMarker.keys)
+          keys = _.object(IMarker.keys, IMarker.keys)
 
           m = new MarkerChildModel scope, scope,
-            keys, map, {}, doClick = true,
+            keys, map, {} , doClick = true,
             gMarkerManager, doDrawSelf = false,
             trackModel = false
 
@@ -32,6 +32,6 @@ angular.module("uiGmapgoogle-maps.directives.api")
             scope.control.getGMarkers = gMarkerManager.getGMarkers
 
         scope.$on '$destroy', =>
-          gMarkerManager?.clear()
+          gMarkerManager? .clear()
           gMarkerManager = null
 ]

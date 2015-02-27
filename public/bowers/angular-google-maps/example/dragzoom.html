@@ -13,22 +13,14 @@
 </head>
 
 <body>
-<div data-ng-controller="ctrl">
-    <ui-gmap-google-map id="map"
-                        center="map.center"
-                        pan="map.pan"
-                        zoom="map.zoom"
-                        draggable="true"
-                        refresh="map.refresh"
-                        options="map.options"
-                        events="map.events"
-                        bounds="map.bounds">
+    <div data-ng-controller="ctrl">
+        <ui-gmap-google-map id="map" center="map.center" pan="map.pan" zoom="map.zoom" draggable="true" refresh="map.refresh" options="map.options" events="map.events" bounds="map.bounds">
 
 
-        <ui-gmap-drag-zoom keyboardkey="'alt'"></ui-gmap-drag-zoom>
-        <!--<ui-gmap-drag-zoom options='map.dragZoom.options'></ui-gmap-drag-zoom>-->
-    </ui-gmap-google-map>
-</div>
+            <ui-gmap-drag-zoom keyboardkey="'alt'"></ui-gmap-drag-zoom>
+            <!--<ui-gmap-drag-zoom options='map.dragZoom.options'></ui-gmap-drag-zoom>-->
+        </ui-gmap-google-map>
+    </div>
 </body>
 
 </html>

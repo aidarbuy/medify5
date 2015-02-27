@@ -9,9 +9,9 @@ do ->
                 showTraffic: true,
                 center:
                   latitude: 45
-                  longitude: -73
+                  longitude: - 73
                 zoom: 3,
-                events:   #direct hook to google maps sdk events
+                events: #direct hook to google maps sdk events
                     tilesloaded: (map, eventName, originalEventArgs) ->
                         if !self.hasRun
                             self.map = map

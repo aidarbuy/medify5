@@ -12,27 +12,17 @@
 </head>
 
 <body>
-<div ng-controller="TrackingCtrl">
-    <ui-gmap-google-map id="map"
-                        center="map.center"
-                        pan="map.pan"
-                        zoom="map.zoom"
-                        draggable="true"
-                        refresh="map.refresh"
-                        options="map.options"
-                        events="map.events"
-                        bounds="map.bounds">
-        <ui-gmap-markers models="map.markers" coords="'location'"
-                         icon="'icon'" title="'title'" options="'options'"
-                         events="map.markerEvents">
-        </ui-gmap-markers>
+    <div ng-controller="TrackingCtrl">
+        <ui-gmap-google-map id="map" center="map.center" pan="map.pan" zoom="map.zoom" draggable="true" refresh="map.refresh" options="map.options" events="map.events" bounds="map.bounds">
+            <ui-gmap-markers models="map.markers" coords="'location'" icon="'icon'" title="'title'" options="'options'" events="map.markerEvents">
+            </ui-gmap-markers>
 
-        <!--<ui-gmap-marker ng-repeat="m in map.markers" coords="m.location"-->
-                         <!--icon="m.icon" title="m.title" options="m.options" fit="true" idkey="m.id"-->
-                <!--events="map.markerEvents">-->
-        <!--</ui-gmap-marker>-->
-    </ui-gmap-google-map>
-</div>
+            <!--<ui-gmap-marker ng-repeat="m in map.markers" coords="m.location"-->
+            <!--icon="m.icon" title="m.title" options="m.options" fit="true" idkey="m.id"-->
+            <!--events="map.markerEvents">-->
+            <!--</ui-gmap-marker>-->
+        </ui-gmap-google-map>
+    </div>
 </body>
 
 </html>

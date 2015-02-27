@@ -5,7 +5,7 @@ angular.module('uiGmapgoogle-maps.directives.api')
     class IPolyline extends BaseObject
       @include GmapUtil
       @extend CtrlHandle
-      constructor: ()->
+      constructor: () ->
       restrict: 'EMA'
       replace: true
       require: '^' + 'uiGmapGoogleMap'

@@ -37,7 +37,7 @@ angular.module('uiGmapgoogle-maps.extensions')
   @withoutObjects = @differenceObjects
 
   @indexOfObject = (array, item, comparison, isSorted) ->
-      return -1  unless array?
+      return - 1 unless array?
       i = 0
       length = array.length
       if isSorted
@@ -45,20 +45,20 @@ angular.module('uiGmapgoogle-maps.extensions')
               i = ((if isSorted < 0 then Math.max(0, length + isSorted) else isSorted))
           else
               i = _.sortedIndex(array, item)
-              return (if array[i] is item then i else -1)
+              return (if array[i] is item then i else - 1)
       while i < length
           if comparison?
               return i if comparison array[i], item
           else
               return i if _.isEqual array[i], item
           i++
-      -1
+       - 1
 
   #to easily inherit multiple objects
-  this.extends = (arrayOfObjectsToCombine)->
-      _.reduce arrayOfObjectsToCombine,(combined,toAdd)->
-          _.extend(combined,toAdd)
-      ,{}#starting point empty object
+  this.extends = (arrayOfObjectsToCombine) ->
+      _.reduce arrayOfObjectsToCombine, (combined, toAdd) ->
+          _.extend(combined, toAdd)
+      , {} #starting point empty object
 
 
   @isNullOrUndefined = (thing) ->

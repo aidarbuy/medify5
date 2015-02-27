@@ -34,12 +34,12 @@ pipeline = [
 concatDist =
   options:
     banner: """
-    /*! <%= pkg.name %> <%= pkgFn().version %> <%= grunt.template.today(\"yyyy-mm-dd\") %>
-     *  <%= pkg.description %>
-     *  <%= pkg.repository.type %>: <%= pkg.repository.url %>
+    /*! < % = pkg.name % > < % = pkgFn().version % > < % = grunt.template.today(\"yyyy-mm-dd\") % >
+      * < % = pkg.description % >
+      * < % = pkg.repository.type % > : < % = pkg.repository.url % >
      */
     ;
-    (function( window, angular, undefined ){
+    (function( window, angular, undefined ) {
       'use strict';
     """
     separator: ";"
@@ -57,7 +57,7 @@ concatDist =
   dest: "dist/<%= pkg.name %>.js"
 
 clone = (obj) ->
-  _.extend {}, obj
+  _.extend {} , obj
 
 concatDistMapped = clone concatDist
 concatDistMapped.options = _.extend clone(concatDist.options),
@@ -65,7 +65,7 @@ concatDistMapped.options = _.extend clone(concatDist.options),
   sourceMapName: "dist/<%= pkg.name %>_dev_mapped.js.map"
 concatDistMapped.dest = "dist/<%= pkg.name %>_dev_mapped.js"
 
-uglifyDist=
+uglifyDist =
   options:
     banner: "/*! <%= pkg.name %> <%= pkgFn().version %> <%= grunt.template.today(\"yyyy-mm-dd\") %>\n *  <%= pkg.description %>\n *  <%= pkg.repository.type %>: <%= pkg.repository.url %>\n */\n"
     compress: true
@@ -77,7 +77,7 @@ uglifyDistMapped = clone uglifyDist
 uglifyDistMapped.options = _.extend clone(uglifyDistMapped.options),
   sourceMap: true
   sourceMapName: "dist/<%= pkg.name %>_dev_mapped.min.js.map"
-uglifyDistMapped.src =  "dist/<%= pkg.name %>_dev_mapped.js"
+uglifyDistMapped.src = "dist/<%= pkg.name %>_dev_mapped.js"
 uglifyDistMapped.dest = "dist/<%= pkg.name %>_dev_mapped.min.js"
 
 module.exports = (grunt) ->

@@ -12,20 +12,12 @@
 </head>
 
 <body>
-<div ng-controller="TrackingCtrl">
-    <ui-gmap-google-map id="map"
-                        center="map.center"
-                        pan="map.pan"
-                        zoom="map.zoom"
-                        draggable="true"
-                        refresh="map.refresh"
-                        options="map.options"
-                        events="map.events"
-                        bounds="map.bounds">
-        <ui-gmap-markers models="map.markers" coords="'location'" icon="'icon'" title="'title'" options="'options'">
-        </ui-gmap-markers>
-    </ui-gmap-google-map>
-</div>
+    <div ng-controller="TrackingCtrl">
+        <ui-gmap-google-map id="map" center="map.center" pan="map.pan" zoom="map.zoom" draggable="true" refresh="map.refresh" options="map.options" events="map.events" bounds="map.bounds">
+            <ui-gmap-markers models="map.markers" coords="'location'" icon="'icon'" title="'title'" options="'options'">
+            </ui-gmap-markers>
+        </ui-gmap-google-map>
+    </div>
 </body>
 
 </html>

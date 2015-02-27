@@ -1,6 +1,6 @@
 angular.module('uiGmapgoogle-maps.directives.api')
 .factory 'uiGmapIMarker', [ 'uiGmapBaseObject', 'uiGmapCtrlHandle',
- (BaseObject, CtrlHandle)->
+ (BaseObject, CtrlHandle) ->
     class IMarker extends BaseObject
 
       IMarker.scopeKeys =
@@ -19,8 +19,8 @@ angular.module('uiGmapgoogle-maps.directives.api')
       constructor: ->
         @restrict = 'EMA'
         @require = '^' + 'uiGmapGoogleMap'
-        @priority = -1
+        @priority = - 1
         @transclude = true
         @replace = true
-        @scope = _.extend @scope or {}, IMarker.scopeKeys
+        @scope = _.extend @scope or {} , IMarker.scopeKeys
 ]

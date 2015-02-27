@@ -33,8 +33,8 @@ angular.module('uiGmapgoogle-maps.directives.api.models.parent')
       #thus they need to be pushed to all the children models so that they are bound to the correct objects / keys
       watch: (scope, name, nameKey) =>
         scope.$watch name, (newValue, oldValue) =>
-          if (newValue != oldValue)
-            maybeCanceled =  null
+          if (newValue ! = oldValue)
+            maybeCanceled = null
             @[nameKey] = if _.isFunction newValue then newValue() else newValue
 
             _async.promiseLock @, uiGmapPromise.promiseTypes.update, "watch #{name} #{nameKey}"
@@ -49,7 +49,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.parent')
       watchModels: (scope) =>
         scope.$watchCollection 'models', (newValue, oldValue) =>
           #check to make sure that the newValue Array is really a set of new objects
-          unless _.isEqual(newValue, oldValue) and (@lastNewValue != newValue or @lastOldValue != oldValue)
+          unless _.isEqual(newValue, oldValue) and (@lastNewValue ! = newValue or @lastOldValue ! = oldValue)
             @lastNewValue = newValue
             @lastOldValue = oldValue
             if @doINeedToWipe(newValue)
@@ -74,7 +74,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.parent')
             delete @plurals if doDelete
             @plurals = new PropMap()
 
-      watchDestroy: (scope)=>
+      watchDestroy: (scope) =>
         scope.$on '$destroy', =>
           @rebuildAll(scope, false, true)
 
@@ -98,10 +98,10 @@ angular.module('uiGmapgoogle-maps.directives.api.models.parent')
             else
               @pieceMeal @scope, false
 
-      watchIdKey: (scope)=>
+      watchIdKey: (scope) =>
         @setIdKey scope
         scope.$watch 'idKey', (newValue, oldValue) =>
-          if (newValue != oldValue and !newValue?)
+          if (newValue ! = oldValue and !newValue? )
             @idKey = newValue
             @rebuildAll(scope, true, true)
 
@@ -111,7 +111,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.parent')
           @watchModels scope
           @watchDestroy scope
 
-        return if @didQueueInitPromise(@,scope)
+        return if @didQueueInitPromise(@, scope)
 
         #allows graceful fallout of _async.each
         maybeCanceled = null
@@ -127,7 +127,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.parent')
             #handle done callBack
             @firstTime = false
 
-      pieceMeal: (scope, isArray = true)=>
+      pieceMeal: (scope, isArray = true) =>
         return if scope.$$destroyed
         #allows graceful fallout of _async.each
         maybeCanceled = null
@@ -158,12 +158,12 @@ angular.module('uiGmapgoogle-maps.directives.api.models.parent')
           @inProgress = false
           @rebuildAll(@scope, true, true)
 
-      createChild: (model, gMap)=>
+      createChild: (model, gMap) =>
         childScope = @scope.$new(false)
         @setChildScope(@scopePropNames, childScope, model)
 
         childScope.$watch('model', (newValue, oldValue) =>
-          if(newValue != oldValue)
+          if(newValue ! = oldValue)
             @setChildScope(childScope, newValue)
         , true)
 

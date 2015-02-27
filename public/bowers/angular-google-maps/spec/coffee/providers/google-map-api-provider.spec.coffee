@@ -7,7 +7,7 @@ describe 'uiGmapGoogleMapApiProvider', ->
         (GoogleMapApi) ->
           GoogleMapApi.configure({
             china: true
-          })
+          } )
       ]
     )
     module('uiGmapgoogle-maps', 'mockModule')

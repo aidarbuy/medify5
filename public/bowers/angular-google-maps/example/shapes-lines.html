@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:ng="http://angularjs.org" id='ng-app' ng-app="angular-google-maps-example">
+
 <head>
     <meta charset="UTF-8">
     <title>angular-google-maps example page</title>
@@ -18,87 +19,69 @@ window.html5 = {
     <script src="https://rawgithub.com/aFarkas/html5shiv/3.7.0/src/html5shiv.js"></script>
     <![endif]-->
 
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
-          type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,600,300,700'
-          rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,600,300,700' rel='stylesheet' type='text/css'>
     <link href="assets/stylesheets/example.css" rel="stylesheet" type="text/css">
 </head>
 
 <body ng-controller="controller">
-<!--	You can use either a div having class 'google-map' or the '<ui-gmap-google-map>' element; in
+    <!--	You can use either a div having class 'google-map' or the '<ui-gmap-google-map>' element; in
 the latter case, uncomment the style above to make sure the custom elements gets block display	-->
 
-<div class="container-fluid">
-<div class="row-fluid">
-    <div class="page-title">
-        <h2>angular-google-maps example <span ng-cloak>{{version}}</span></h2>
-    </div>
-    <button class="btn btn-danger" ng-click="removeMarkers()">Clear Map</button>
-    <button class="btn btn-success" ng-click="refreshMap()">Refresh Map</button>
-    <button class="btn btn-success" ng-click="getMapInstance()">Get Map Instance</button>
-</div>
-<div class="row-fluid">
-<div ui-gmap-google-map="exp" class="span7"
-     center="map.center"
-     zoom="map.zoom"
-     draggable="true"
-     dragging="map.dragging"
-     bounds="map.bounds"
-     events="map.events"
-     options="map.options"
-     pan="true"
-     control="map.control"
-        >
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="page-title">
+                <h2>angular-google-maps example
+                    <span ng-cloak>{{version}}</span>
+                </h2>
+            </div>
+            <button class="btn btn-danger" ng-click="removeMarkers()">Clear Map</button>
+            <button class="btn btn-success" ng-click="refreshMap()">Refresh Map</button>
+            <button class="btn btn-success" ng-click="getMapInstance()">Get Map Instance</button>
+        </div>
+        <div class="row-fluid">
+            <div ui-gmap-google-map="exp" class="span7" center="map.center" zoom="map.zoom" draggable="true" dragging="map.dragging" bounds="map.bounds" events="map.events" options="map.options" pan="true" control="map.control">
 
-    <ui-gmap-layer type="TrafficLayer" show="map.showTraffic"></ui-gmap-layer>
-    <ui-gmap-layer type="BicyclingLayer" show="map.showBicycling"></ui-gmap-layer>
-    <ui-gmap-layer namespace="weather" type="WeatherLayer" show="map.showWeather"></ui-gmap-layer>
-    <ui-gmap-layer namespace="visualization" type="HeatmapLayer" show="map.showHeat"
-                   onCreated="map.heatLayerCallback"></ui-gmap-layer>
+                <ui-gmap-layer type="TrafficLayer" show="map.showTraffic"></ui-gmap-layer>
+                <ui-gmap-layer type="BicyclingLayer" show="map.showBicycling"></ui-gmap-layer>
+                <ui-gmap-layer namespace="weather" type="WeatherLayer" show="map.showWeather"></ui-gmap-layer>
+                <ui-gmap-layer namespace="visualization" type="HeatmapLayer" show="map.showHeat" onCreated="map.heatLayerCallback"></ui-gmap-layer>
 
 
-    <!-- polyline example -->
-    <!--<ui-gmap-polyline ng-repeat="p in map.polylines" path="p.path" stroke="p.stroke" visible='p.visible'-->
-    <!--geodesic='p.geodesic' fit="false" editable="p.editable" draggable="p.draggable"></ui-gmap-polyline>-->
+                <!-- polyline example -->
+                <!--<ui-gmap-polyline ng-repeat="p in map.polylines" path="p.path" stroke="p.stroke" visible='p.visible'-->
+                <!--geodesic='p.geodesic' fit="false" editable="p.editable" draggable="p.draggable"></ui-gmap-polyline>-->
 
-    <ui-gmap-polylines models="map.polylines" path="'path'" stroke="'stroke'" visible="'visible'"
-                       geodesic="'geodesic'" fit="'false'" editable="'editable'"
-                       draggable="'draggable'"></ui-gmap-polylines>
+                <ui-gmap-polylines models="map.polylines" path="'path'" stroke="'stroke'" visible="'visible'" geodesic="'geodesic'" fit="'false'" editable="'editable'" draggable="'draggable'"></ui-gmap-polylines>
 
-    <!--<ui-gmap-polylines models="map.polylines" path="'path'" stroke="'stroke'" visible="'visible'"-->
-    <!--geodesic="'geodesic'" fit="'false'" editable="'editable'" draggable="'draggable'" static="true"></polylines>-->
+                <!--<ui-gmap-polylines models="map.polylines" path="'path'" stroke="'stroke'" visible="'visible'"-->
+                <!--geodesic="'geodesic'" fit="'false'" editable="'editable'" draggable="'draggable'" static="true"></polylines>-->
 
-    <!-- polygon example -->
-    <!--<ui-gmap-polygon static="true" ng-repeat="p in map.polygons track by p.id" path="p.path" stroke="p.stroke" visible="p.visible"-->
-    <!--geodesic="p.geodesic" fill="p.fill" fit="false" editable="p.editable" draggable="p.draggable"></ui-gmap-polygon>-->
+                <!-- polygon example -->
+                <!--<ui-gmap-polygon static="true" ng-repeat="p in map.polygons track by p.id" path="p.path" stroke="p.stroke" visible="p.visible"-->
+                <!--geodesic="p.geodesic" fill="p.fill" fit="false" editable="p.editable" draggable="p.draggable"></ui-gmap-polygon>-->
 
-    <ui-gmap-polygon ng-repeat="p in map.polygons track by p.id" path="p.path" stroke="p.stroke" visible="p.visible"
-                     geodesic="p.geodesic" fill="p.fill" fit="false" editable="p.editable"
-                     draggable="p.draggable"></ui-gmap-polygon>
+                <ui-gmap-polygon ng-repeat="p in map.polygons track by p.id" path="p.path" stroke="p.stroke" visible="p.visible" geodesic="p.geodesic" fill="p.fill" fit="false" editable="p.editable" draggable="p.draggable"></ui-gmap-polygon>
 
-    <!-- circle example -->
-    <ui-gmap-circle ng-repeat="c in map.circles track by c.id" center="c.center" stroke="c.stroke" fill="c.fill"
-                    radius="c.radius"
-                    visible="c.visible" geodesic="c.geodesic" editable="c.editable" draggable="c.draggable"
-                    clickable="c.clickable"></ui-gmap-circle>
+                <!-- circle example -->
+                <ui-gmap-circle ng-repeat="c in map.circles track by c.id" center="c.center" stroke="c.stroke" fill="c.fill" radius="c.radius" visible="c.visible" geodesic="c.geodesic" editable="c.editable" draggable="c.draggable" clickable="c.clickable"></ui-gmap-circle>
 
-</div>
-<div class="span5">
-    <fieldset>
-        <table class="table">
-            <tbody>
-            <tr>
-                <td><a class="btn btn-primary accordion-toggle" data-toggle="collapse" data-target="#polygons"
-                       href="#polygonCollapse">
+            </div>
+            <div class="span5">
+                <fieldset>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><a class="btn btn-primary accordion-toggle" data-toggle="collapse" data-target="#polygons" href="#polygonCollapse">
                     polygons
-                </a></td>
-                <td>
-                    <div id="polygons" class="collapse well sidebar-nav">
-                        <ul class="nav nav-list">
-                            <li ng-cloak ng-repeat="p in map.polygons">
-                                <a href="#">
-                                    <i class="i" title="Click me to Show InfoWindow!" ng-cloak>
+                </a>
+                                </td>
+                                <td>
+                                    <div id="polygons" class="collapse well sidebar-nav">
+                                        <ul class="nav nav-list">
+                                            <li ng-cloak ng-repeat="p in map.polygons">
+                                                <a href="#">
+                                                    <i class="i" title="Click me to Show InfoWindow!" ng-cloak>
 <span class="{{p.visible}}"
       ng-click="p.visible = !p.visible">Polygon:</span> {<br/>
 <span style="padding-left: 5em" class="{{p.visible}}"
@@ -131,22 +114,22 @@ longitude:{{pt.longitude | number:2}}
 
                                         }
                                     </i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-            </tr>
-            <tr>
-                <td><a class="btn btn-primary accordion-toggle" data-toggle="collapse" data-target="#polylines"
-                       href="#polylineCollapse">
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                            </tr>
+                            <tr>
+                                <td><a class="btn btn-primary accordion-toggle" data-toggle="collapse" data-target="#polylines" href="#polylineCollapse">
                     polylines
-                </a></td>
-                <td>
-                    <div id="polylines" class="collapse well sidebar-nav">
-                        <ul class="nav nav-list">
-                            <li ng-repeat="p in map.polylines" ng-cloak>
-                                <a href="#">
-                                    <i class="i" title="Click me to Show InfoWindow!">
+                </a>
+                                </td>
+                                <td>
+                                    <div id="polylines" class="collapse well sidebar-nav">
+                                        <ul class="nav nav-list">
+                                            <li ng-repeat="p in map.polylines" ng-cloak>
+                                                <a href="#">
+                                                    <i class="i" title="Click me to Show InfoWindow!">
 <span class="{{p.visible}}"
       ng-click="p.visible = !p.visible">Polyline:</span> {<br/>
 <span style="padding-left: 5em" class="{{p.visible}}"
@@ -179,23 +162,23 @@ longitude:{{pt.longitude | number:2}}
 
                                         }
                                     </i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td><a class="btn btn-primary accordion-toggle" data-toggle="collapse" data-target="#circles"
-                       href="#circlesCollapse">
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a class="btn btn-primary accordion-toggle" data-toggle="collapse" data-target="#circles" href="#circlesCollapse">
                     circles
-                </a></td>
-                <td>
-                    <div id="circles" class="collapse well sidebar-nav">
-                        <ul class="nav nav-list">
-                            <li ng-repeat="c in map.circles" ng-cloak>
-                                <a href="#">
-                                    <i class="i" title="Click me to Show InfoWindow!">
+                </a>
+                                </td>
+                                <td>
+                                    <div id="circles" class="collapse well sidebar-nav">
+                                        <ul class="nav nav-list">
+                                            <li ng-repeat="c in map.circles" ng-cloak>
+                                                <a href="#">
+                                                    <i class="i" title="Click me to Show InfoWindow!">
                                         <span class="{{c.visible}}" ng-click="c.visible = !c.visible">Circle:</span>
                                         {<br/>
 <span style="padding-left: 5em" class="{{c.visible}}"
@@ -239,28 +222,28 @@ longitude:{{pt.longitude | number:2}}
 
                                         }
                                     </i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </fieldset>
-</div>
-</div>
-</div>
-<!-- BOOTSTRAP NEEDS JQUERY-->
-<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="http://maps.googleapis.com/maps/api/js?libraries=weather,visualization&sensor=false&language=en&v=3.14"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-<script src="../website_libs/dev_deps.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js" type="text/javascript"></script>
-<script src="../dist/angular-google-maps.js"></script>
-<script src="assets/scripts/mocks/heat-layer.js"></script>
-<script src="assets/scripts/controllers/shapes-lines.js"></script>
-<script src="assets/scripts/controllers/templates/info.js"></script>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <!-- BOOTSTRAP NEEDS JQUERY-->
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=weather,visualization&sensor=false&language=en&v=3.14"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script src="../website_libs/dev_deps.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js" type="text/javascript"></script>
+    <script src="../dist/angular-google-maps.js"></script>
+    <script src="assets/scripts/mocks/heat-layer.js"></script>
+    <script src="assets/scripts/controllers/shapes-lines.js"></script>
+    <script src="assets/scripts/controllers/templates/info.js"></script>
 </body>
 
 </html>

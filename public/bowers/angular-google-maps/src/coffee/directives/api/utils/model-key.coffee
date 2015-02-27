@@ -31,7 +31,7 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
 
       modelOrKey: (model, key) ->
         return unless key?
-        if key != 'self'
+        if key ! = 'self'
           return model[key]
         model
 
@@ -59,7 +59,7 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
             else if _.isObject(now[prop])
               # Recursion alert
               c = @getChanges(now[prop], (if prev then prev[prop] else null))
-              changes[prop] = c  unless _.isEmpty(c)
+              changes[prop] = c unless _.isEmpty(c)
             else
               changes[prop] = now[prop]
         changes
@@ -103,13 +103,13 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
           isScopeObj = @scopeOrModelVal name, childScope, model, true
           unless isScopeObj.isScope
             newValue = isScopeObj.value
-            if(newValue != childScope[name])
+            if(newValue ! = childScope[name])
               childScope[name] = newValue
         childScope.model = model
 
 
       destroy: (manualOverride = false) =>
-        if @scope? and not @scope?.$$destroyed and (@needToManualDestroy or manualOverride)
+        if @scope? and not @scope? .$$destroyed and (@needToManualDestroy or manualOverride)
           @scope.$destroy()
         else
           @clean()

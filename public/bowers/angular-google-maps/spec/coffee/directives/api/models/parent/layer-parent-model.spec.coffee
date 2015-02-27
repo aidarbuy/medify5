@@ -2,10 +2,10 @@ describe 'uiGmapLayerParentModelSpec', ->
     beforeEach ->
         module('uiGmapgoogle-maps.mocks')
         angular.module('mockModule', ['uiGmapgoogle-maps'])
-        .value('mapCtrl', {})
-        .value('element', {})
-        .value('attrs', {})
-        .value('model', {})
+        .value('mapCtrl', {} )
+        .value('element', {} )
+        .value('attrs', {} )
+        .value('model', {} )
         .value('scope', @scope)
 
         module 'mockModule'
@@ -15,29 +15,29 @@ describe 'uiGmapLayerParentModelSpec', ->
 
         @scope =
             options :
-                blah:true
-            $watch:()->
-            $on:()->
+                blah: true
+            $watch: () ->
+            $on: () ->
         @attrs =
-            type:'testLayer'
-            options:'someBoundAttr'
+            type: 'testLayer'
+            options: 'someBoundAttr'
         self = @
         @setOpts
         @tempMaps = google.maps
-        google.maps.testLayer =  (opts)=>
+        google.maps.testLayer = (opts) =>
             self.setOpts = opts
-            setMap:()->
+            setMap: () ->
 
         @mapCtrl = {}
 
-        @timeout = (fnc,time) =>
+        @timeout = (fnc, time) =>
             fnc()
 
         inject ['$rootScope', 'uiGmapLayerParentModel', ($rootScope, LayerParentModel) =>
             scope = $rootScope.$new()
             @constructor = LayerParentModel
             @scope = _.extend @scope, scope
-            @subject = new @constructor(@scope,{},@attrs,@mapCtrl)
+            @subject = new @constructor(@scope, {} , @attrs, @mapCtrl)
         ]
 
     afterEach ->

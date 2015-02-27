@@ -12,7 +12,7 @@ angular.module('uiGmapgoogle-maps').factory 'uiGmaparray-sync', [
           set_at: (index) ->
             return if isSetFromScope #important to avoid cyclic forever change loop watch to map event change and back
             value = mapArray.getAt(index)
-            return  unless value
+            return unless value
             if not value.lng or not value.lat # LatLng object
               scopePath[index] = value
             else
@@ -22,7 +22,7 @@ angular.module('uiGmapgoogle-maps').factory 'uiGmaparray-sync', [
           insert_at: (index) ->
             return if isSetFromScope #important to avoid cyclic forever change loop watch to map event change and back
             value = mapArray.getAt(index)
-            return  unless value
+            return unless value
             #check to make sure we are not inserting something that is already there
             if not value.lng or not value.lat # LatLng object
               scopePath.splice index, 0, value
@@ -46,16 +46,16 @@ angular.module('uiGmapgoogle-maps').factory 'uiGmaparray-sync', [
           set_at: (index) ->
             return if isSetFromScope #important to avoid cyclic forever change loop watch to map event change and back
             value = mapArray.getAt(index)
-            return  unless value
-            return  if not value.lng or not value.lat
+            return unless value
+            return if not value.lng or not value.lat
             geojsonArray[index][1] = value.lat()
             geojsonArray[index][0] = value.lng()
 
           insert_at: (index) ->
             return if isSetFromScope #important to avoid cyclic forever change loop watch to map event change and back
             value = mapArray.getAt(index)
-            return  unless value
-            return  if not value.lng or not value.lat
+            return unless value
+            return if not value.lng or not value.lat
             geojsonArray.splice index, 0, [ value.lng(), value.lat() ]
 
           remove_at: (index) ->

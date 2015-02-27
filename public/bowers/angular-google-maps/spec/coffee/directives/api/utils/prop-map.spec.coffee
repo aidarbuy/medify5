@@ -1,13 +1,13 @@
 describe 'PropMap tests', ->
   beforeEach ->
     angular.mock.module('uiGmapgoogle-maps.directives.api.models.parent')
-    inject [ 'uiGmapPropMap',(PropMap) =>
+    inject [ 'uiGmapPropMap', (PropMap) =>
       @PropMap = PropMap
     ]
 
   it 'should construct', ->
     propMap = new @PropMap()
-    expect(propMap?).toEqual(true)
+    expect(propMap? ).toEqual(true)
 
   describe 'PropMap method tests', ->
     beforeEach ->

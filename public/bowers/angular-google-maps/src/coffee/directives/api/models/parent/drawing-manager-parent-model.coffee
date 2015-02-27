@@ -13,7 +13,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.parent')
 
             if !@scope.static and @scope.options
               @scope.$watch 'options', (newValue) ->
-                drawingManager?.setOptions newValue
+                drawingManager? .setOptions newValue
               , true
 
             scope.$on '$destroy', ->

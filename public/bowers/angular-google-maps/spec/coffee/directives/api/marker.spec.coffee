@@ -9,8 +9,8 @@ describe "uiGmapMarker", ->
           latitude: 90.0
           longitude: 89.0
         show: true
-        $watch: ()->
-        $on: ()->
+        $watch: () ->
+        $on: () ->
         control: {}
 
       element:
@@ -19,19 +19,19 @@ describe "uiGmapMarker", ->
       attrs:
         isiconvisibleonclick: true
       ctrl:
-        getMap: ()->
+        getMap: () ->
           {}
     @timeOutNoW = (fnc, time) =>
       fnc()
 
-    inject ['GoogleApiMock','$rootScope', '$q', 'uiGmapMarker',(GoogleApiMock,$rootScope, $q, Marker) =>
+    inject ['GoogleApiMock','$rootScope', '$q', 'uiGmapMarker', (GoogleApiMock, $rootScope, $q, Marker) =>
       @gmap = new GoogleApiMock()
       @gmap.initAll()
       @$rootScope = $rootScope
       d = $q.defer()
       d.resolve {}
       @$rootScope.deferred = d
-      @mocks.ctrl.getScope =  =>
+      @mocks.ctrl.getScope = =>
         @$rootScope
       @mocks.scope.$new = () =>
         @$rootScope.$new()

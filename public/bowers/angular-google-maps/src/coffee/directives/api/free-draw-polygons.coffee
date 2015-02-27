@@ -1,7 +1,7 @@
 ###
-  - Link up Polygons to be sent back to a controller
-  - inject the draw function into a controllers scope so that controller can call the directive to draw on demand
-  - draw function creates the DrawFreeHandChildModel which manages itself
+   - Link up Polygons to be sent back to a controller
+   - inject the draw function into a controllers scope so that controller can call the directive to draw on demand
+   - draw function creates the DrawFreeHandChildModel which manages itself
 ###
 angular.module('uiGmapgoogle-maps.directives.api')
 .factory 'uiGmapApiFreeDrawPolygons', [
@@ -25,7 +25,7 @@ angular.module('uiGmapgoogle-maps.directives.api')
           listener = undefined
           scope.draw = ->
             #clear watch only watch when we are finished drawing/engaging
-            listener?()
+            listener? ()
             freeHand.engage(scope.polygons).then ->
               #we are done drawing, now watch for changes on polygons, on post draw
               firstTime = true

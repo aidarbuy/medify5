@@ -2,10 +2,10 @@ defaultMap =
   zoom: 12
   center:
     longitude: 47
-    latitude: -27
+    latitude: - 27
 
 window["uiGmapInitiator"] =
-  initDirective: (toInit, apiSubjectClassName, thingsToInit = ['initAll'], map = defaultMap)->
+  initDirective: (toInit, apiSubjectClassName, thingsToInit = ['initAll'], map = defaultMap) ->
 
     injects = ['$compile', '$rootScope', '$timeout', 'uiGmapLogger']
     if apiSubjectClassName?
@@ -37,7 +37,7 @@ window["uiGmapInitiator"] =
     app = module "uiGmapgoogle-maps.mocks"
     module "uiGmapgoogle-maps.directives.api.utils"
     apiMock = undefined
-    inject ['GoogleApiMock',(GoogleApiMock) =>
+    inject ['GoogleApiMock', (GoogleApiMock) =>
       apiMock = new GoogleApiMock()
       apiMock.initAll()
     ]

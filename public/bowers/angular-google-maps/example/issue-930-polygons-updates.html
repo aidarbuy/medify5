@@ -19,75 +19,59 @@
 </head>
 
 <body>
-<div data-ng-controller="ctrl">
-    <ui-gmap-google-map id="map"
-                        center="map.center"
-                        pan="map.pan"
-                        zoom="map.zoom"
-                        draggable="true"
-                        refresh="map.refresh"
-                        options="map.options"
-                        events="map.events"
-                        bounds="map.bounds">
-        <ui-gmap-map-control template="widgets.tpl.html" position="top-right" index="1" controller="mapWidgetCtrl">
-        </ui-gmap-map-control>
+    <div data-ng-controller="ctrl">
+        <ui-gmap-google-map id="map" center="map.center" pan="map.pan" zoom="map.zoom" draggable="true" refresh="map.refresh" options="map.options" events="map.events" bounds="map.bounds">
+            <ui-gmap-map-control template="widgets.tpl.html" position="top-right" index="1" controller="mapWidgetCtrl">
+            </ui-gmap-map-control>
 
-        <ui-gmap-polygons
-                models="map.polys" path="'path'" stroke="'stroke'" visible="'visible'" geodesic="'geodesic'"
-                fit="false" editable="'editable'" draggable="'draggable'" fill="{ color: '#2c8aa7', opacity: '0.3' }"
-                icons="'icons'">
+            <ui-gmap-polygons models="map.polys" path="'path'" stroke="'stroke'" visible="'visible'" geodesic="'geodesic'" fit="false" editable="'editable'" draggable="'draggable'" fill="{ color: '#2c8aa7', opacity: '0.3' }" icons="'icons'">
 
-        </ui-gmap-polygons>
-    </ui-gmap-google-map>
+            </ui-gmap-polygons>
+        </ui-gmap-google-map>
 
-    <div>
-        <p>{{map.bounds}}</p>
+        <div>
+            <p>{{map.bounds}}</p>
 
-        <div ng-repeat="p in map.polys track by p.id">Polyline {{p.id}}
-            <table>
-                <tr>
-                    <th>Static</th>
-                    <th>Editable</th>
-                    <th>draggable</th>
-                    <th>Path</th>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" ng-model="p.static"/>
-                    </td>
-                    <td>
-                        <input type="text" ng-model="p.editable"/>
-                    </td>
-                    <td>
-                        <input type="text" ng-model="p.draggable"/>
-                    </td>
-                    <td>
-                        <table>
-                            <tr>
-                                <th>Latitude</th>
-                                <th>Longitude</th>
-                            </tr>
-                            <tr ng-repeat="m in p.path">
-                                <td>
-                                    <input type="text" ng-model="m.latitude"/>
-                                </td>
-                                <td>
-                                    <input type="text" ng-model="m.longitude"/>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-            static: {{p.static}}
-            editable: {{p.editable}}
-            draggable: {{p.draggable}}
-            path: {{p.path}}
+            <div ng-repeat="p in map.polys track by p.id">Polyline {{p.id}}
+                <table>
+                    <tr>
+                        <th>Static</th>
+                        <th>Editable</th>
+                        <th>draggable</th>
+                        <th>Path</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" ng-model="p.static" />
+                        </td>
+                        <td>
+                            <input type="text" ng-model="p.editable" />
+                        </td>
+                        <td>
+                            <input type="text" ng-model="p.draggable" />
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
+                                </tr>
+                                <tr ng-repeat="m in p.path">
+                                    <td>
+                                        <input type="text" ng-model="m.latitude" />
+                                    </td>
+                                    <td>
+                                        <input type="text" ng-model="m.longitude" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                static: {{p.static}} editable: {{p.editable}} draggable: {{p.draggable}} path: {{p.path}}
+            </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>
-
-

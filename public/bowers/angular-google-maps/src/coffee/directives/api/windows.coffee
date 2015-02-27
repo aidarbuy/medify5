@@ -18,12 +18,12 @@ angular.module('uiGmapgoogle-maps.directives.api')
       link: (scope, element, attrs, ctrls) =>
         mapScope = ctrls[0].getScope()
         markerCtrl = if ctrls.length > 1 and ctrls[1]? then ctrls[1] else undefined
-        markerScope = markerCtrl?.getScope()
+        markerScope = markerCtrl? .getScope()
 
         mapScope.deferred.promise.then (map) =>
-          promise = markerScope?.deferred?.promise or uiGmapPromise.resolve()
+          promise = markerScope? .deferred? .promise or uiGmapPromise.resolve()
           promise.then =>
-            pieces = @parentModel?.existingPieces
+            pieces = @parentModel? .existingPieces
             if pieces
               pieces.then =>
                 @init scope, element, attrs, ctrls, map, markerScope
@@ -34,7 +34,7 @@ angular.module('uiGmapgoogle-maps.directives.api')
         parentModel = new WindowsParentModel(scope, element, attrs, ctrls, map, additionalScope)
         if scope.control?
           scope.control.getGWindows = =>
-            parentModel.windows.map (child)->
+            parentModel.windows.map (child) ->
               child.gWin
           scope.control.getChildWindows = =>
             parentModel.windows

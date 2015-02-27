@@ -13,40 +13,29 @@
 </head>
 
 <body>
-<div data-ng-controller="ctrl">
-    <ui-gmap-google-map id="map"
-                       center="map.center"
-                       pan="map.pan"
-                       zoom="map.zoom"
-                       draggable="true"
-                       refresh="map.refresh"
-                       options="map.options"
-                       events="map.events"
-                       bounds="map.bounds">
+    <div data-ng-controller="ctrl">
+        <ui-gmap-google-map id="map" center="map.center" pan="map.pan" zoom="map.zoom" draggable="true" refresh="map.refresh" options="map.options" events="map.events" bounds="map.bounds">
 
-        <ui-gmap-map-control template="polyButton.tpl.html" position="top-right" index="1" controller="mapWidgetCtrl">
-        </ui-gmap-map-control>
+            <ui-gmap-map-control template="polyButton.tpl.html" position="top-right" index="1" controller="mapWidgetCtrl">
+            </ui-gmap-map-control>
 
-        <ui-gmap-map-control template="clear.tpl.html" position="top-right" index="1" controller="mapWidgetCtrl">
-        </ui-gmap-map-control>
+            <ui-gmap-map-control template="clear.tpl.html" position="top-right" index="1" controller="mapWidgetCtrl">
+            </ui-gmap-map-control>
 
-        <!--<ui-gmap-polygon ng-repeat="p in map.polys track by p.id" path="p.geom" fill="{ color: '#2c8aa7', opacity: '0.3' }"-->
-                         <!--stroke="{ color: '#2c8aa7', weight: 3, opacity: '1.0' }" visible="true" geodesic="true" fit="false"-->
-                         <!--editable="false" static="true" ng-cloak=""></ui-gmap-polygon>-->
+            <!--<ui-gmap-polygon ng-repeat="p in map.polys track by p.id" path="p.geom" fill="{ color: '#2c8aa7', opacity: '0.3' }"-->
+            <!--stroke="{ color: '#2c8aa7', weight: 3, opacity: '1.0' }" visible="true" geodesic="true" fit="false"-->
+            <!--editable="false" static="true" ng-cloak=""></ui-gmap-polygon>-->
 
-        <ui-gmap-polygons control="map.polyControl" models="map.polys" path='"geom"' fill="{ color: '#2c8aa7', opacity: '0.3' }"
-                         stroke="{ color: '#2c8aa7', weight: 3, opacity: '1.0' }" visible="true" geodesic="true" fit="false"
-                         editable="false" static="true" ng-cloak=""
-                         chunk="100">
+            <ui-gmap-polygons control="map.polyControl" models="map.polys" path='"geom"' fill="{ color: '#2c8aa7', opacity: '0.3' }" stroke="{ color: '#2c8aa7', weight: 3, opacity: '1.0' }" visible="true" geodesic="true" fit="false" editable="false" static="true"
+            ng-cloak="" chunk="100">
 
-        </ui-gmap-polygons>
+            </ui-gmap-polygons>
 
-    </ui-gmap-google-map>
-    <div>
-        # of polygons: {{map.polys.length}}
-        zoom: {{map.zoom}}
+        </ui-gmap-google-map>
+        <div>
+            # of polygons: {{map.polys.length}} zoom: {{map.zoom}}
+        </div>
     </div>
-</div>
 </body>
 
 </html>

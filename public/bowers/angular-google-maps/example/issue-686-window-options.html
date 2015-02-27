@@ -13,17 +13,19 @@
 </head>
 
 <body>
-<div id="map_canvas" ng-controller="mainCtrl">
-    <div>Window Options: <span>{{windowoptions|json}}</span></div>
-    <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" bounds="map.bounds">
-        <ui-gmap-marker idKey="0" coords="marker" click="onClick()">
-        </ui-gmap-marker>
-        <ui-gmap-window coords="marker" closeClick="closeClick()" options="windowoptions">
-            <div>{{title}}</div>
-        </ui-gmap-window>
-    </ui-gmap-google-map>
-</div>
-<!--example-->
+    <div id="map_canvas" ng-controller="mainCtrl">
+        <div>Window Options:
+            <span>{{windowoptions|json}}</span>
+        </div>
+        <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" bounds="map.bounds">
+            <ui-gmap-marker idKey="0" coords="marker" click="onClick()">
+            </ui-gmap-marker>
+            <ui-gmap-window coords="marker" closeClick="closeClick()" options="windowoptions">
+                <div>{{title}}</div>
+            </ui-gmap-window>
+        </ui-gmap-google-map>
+    </div>
+    <!--example-->
 </body>
 
 </html>

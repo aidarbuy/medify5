@@ -27,7 +27,7 @@ spec =
     templateOptions:
       requireConfig: requireConfig
 
-consoleSpec = _.extend {}, spec
+consoleSpec = _.extend {} , spec
 consoleSpec.src = 'dist/angular-google-maps.js'
 
 # log('jasmineSettings: past spec')
@@ -36,7 +36,7 @@ coverage = undefined
 
 if doCover
   coverage = _.clone spec
-  coverage.options =  _.extend coverage.options,
+  coverage.options = _.extend coverage.options,
     template: require 'grunt-template-jasmine-istanbul'
     templateOptions:
       template: require 'grunt-template-jasmine-requirejs'

@@ -12,37 +12,27 @@
 </head>
 
 <body>
-<div ng-controller="ctrl">
-    <ui-gmap-google-map id="map"
-                        center="map.center"
-                        pan="map.pan"
-                        zoom="map.zoom"
-                        draggable="true"
-                        refresh="map.refresh"
-                        options="map.options"
-                        events="map.events"
-                        bounds="map.bounds">
-        <ui-gmap-marker ng-repeat="m in map.markers" coords="m" icon="m.icon" title="m.title"
-                        options="m.options" events="map.marker.events" idkey="m.id" ng-cloak>
-            <ui-gmap-window coords="m.location" ng-cloak>
-                <div ng-cloak>
-                    <p>This is an info window at {{ m.latitude | number:4 }}, {{ m.longitude | number:4 }}!</p>
-                    <br>
-                </div>
-            </ui-gmap-window>
-        </ui-gmap-marker>
+    <div ng-controller="ctrl">
+        <ui-gmap-google-map id="map" center="map.center" pan="map.pan" zoom="map.zoom" draggable="true" refresh="map.refresh" options="map.options" events="map.events" bounds="map.bounds">
+            <ui-gmap-marker ng-repeat="m in map.markers" coords="m" icon="m.icon" title="m.title" options="m.options" events="map.marker.events" idkey="m.id" ng-cloak>
+                <ui-gmap-window coords="m.location" ng-cloak>
+                    <div ng-cloak>
+                        <p>This is an info window at {{ m.latitude | number:4 }}, {{ m.longitude | number:4 }}!</p>
+                        <br>
+                    </div>
+                </ui-gmap-window>
+            </ui-gmap-marker>
 
-        <ui-gmap-markers models="map.markers2" coords="'self'" icon="'icon'" title="'title'"
-                        options="'options'" events="map.marker.events" ng-cloak>
-            <ui-gmap-windows ng-cloak>
-                <div ng-cloak>
-                    <p ng-non-bindable>This is an info window at {{ latitude | number:4 }}, {{ longitude | number:4 }}!</p>
-                    <br>
-                </div>
-            </ui-gmap-windows>
-        </ui-gmap-markers>
-    </ui-gmap-google-map>
-</div>
+            <ui-gmap-markers models="map.markers2" coords="'self'" icon="'icon'" title="'title'" options="'options'" events="map.marker.events" ng-cloak>
+                <ui-gmap-windows ng-cloak>
+                    <div ng-cloak>
+                        <p ng-non-bindable>This is an info window at {{ latitude | number:4 }}, {{ longitude | number:4 }}!</p>
+                        <br>
+                    </div>
+                </ui-gmap-windows>
+            </ui-gmap-markers>
+        </ui-gmap-google-map>
+    </div>
 </body>
 
 </html>

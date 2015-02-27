@@ -1,5 +1,5 @@
 describe 'uiGmapPolyline', ->
-  allDone =  undefined
+  allDone = undefined
   rootScope = null
   timeout = null
   Polyline = null
@@ -26,24 +26,24 @@ describe 'uiGmapPolyline', ->
   describe 'can create a polyline', ->
     it 'from start', ->
       html = """
-        <ui-gmap-google-map draggable="true" center="map.center" zoom="map.zoom">
-          <ui-gmap-polyline ng-repeat="i in items" path="i.path">
-          </ui-gmap-polyline>
-        </ui-gmap-google-map>
+         < ui - gmap - google - map draggable = "true" center="map.center" zoom="map.zoom" >
+           < ui - gmap - polyline ng - repeat = "i in items" path="i.path" >
+          </ui - gmap - polyline >
+        </ui - gmap - google - map >
         """
       scope = rootScope.$new()
       scope.map = {}
       scope.map.zoom = 12
-      scope.map.center = {longitude: 47, latitude: -27}
+      scope.map.center = {longitude: 47, latitude: - 27}
       element = @compile(html)(scope)
       digest =>
         toPush = {}
         toPush.id = 0
         toPush.path = [
-          {latitude:47
-          longitude: -27},
-          {latitude:57
-          longitude: -37}
+          {latitude: 47
+          longitude: - 27} ,
+          {latitude: 57
+          longitude: - 37}
         ]
         scope.items = [toPush]
 
@@ -52,23 +52,23 @@ describe 'uiGmapPolyline', ->
 
     it 'from dynamic lazyUpdate', (done) ->
       html = """
-        <ui-gmap-google-map draggable="true" center="map.center" zoom="map.zoom">
-          <ui-gmap-polyline ng-repeat="i in items" path="i.path">
-          </ui-gmap-polyline>
-        </ui-gmap-google-map>
+         < ui - gmap - google - map draggable = "true" center="map.center" zoom="map.zoom" >
+           < ui - gmap - polyline ng - repeat = "i in items" path="i.path" >
+          </ui - gmap - polyline >
+        </ui - gmap - google - map >
         """
       scope = rootScope.$new()
       scope.map = {}
       scope.map.zoom = 12
-      scope.map.center = {longitude: 47, latitude: -27}
+      scope.map.center = {longitude: 47, latitude: - 27}
       element = @compile(html)(scope)
       toPush = {}
       toPush.id = 0
       toPush.path = [
-        {latitude:47
-        longitude: -27},
-        {latitude:57
-        longitude: -37}
+        {latitude: 47
+        longitude: - 27} ,
+        {latitude: 57
+        longitude: - 37}
       ]
       scope.items = []
       digest ->

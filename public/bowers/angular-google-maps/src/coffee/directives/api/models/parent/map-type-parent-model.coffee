@@ -34,7 +34,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.parent')
           @hideOverlay()
           @mapType = null
 
-      createMapType: ()=>
+      createMapType: () =>
         if @scope.options.getTile?
           @mapType = @scope.options
         else if @scope.options.getTileUrl?
@@ -49,16 +49,16 @@ angular.module('uiGmapgoogle-maps.directives.api.models.parent')
 
         @mapType.layerId = @id
 
-      refreshMapType: ()=>
+      refreshMapType: () =>
         @hideOverlay()
         @mapType = null
         @createMapType()
         @showOverlay() if @doShow and @gMap?
 
-      showOverlay: ()=>
+      showOverlay: () =>
         @gMap.overlayMapTypes.push @mapType
 
-      hideOverlay: ()=>
+      hideOverlay: () =>
         found = false
         @gMap.overlayMapTypes.forEach (mapType, index) =>
           if not found and mapType.layerId is @id

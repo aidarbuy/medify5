@@ -1,8 +1,8 @@
 ###
 @authors:
-- Nicolas Laplante https://plus.google.com/108189012221374960701
-- Nicholas McCready - https://twitter.com/nmccready
-- Carrie Kengle - http://about.me/carrie
+ - Nicolas Laplante https: //plus.google.com/108189012221374960701
+ - Nicholas McCready - https: //twitter.com/nmccready
+ - Carrie Kengle - http: //about.me/carrie
 ###
 
 ###
@@ -11,7 +11,7 @@ Places Search Box directive
 This directive is used to create a Places Search Box.
 This directive creates a new scope.
 
-{attribute input required}  HTMLInputElement
+{attribute input required} HTMLInputElement
 {attribute options optional} The options that can be set on a SearchBox object (google.maps.places.SearchBoxOptions object specification)
 ###
 angular.module('uiGmapgoogle-maps')
@@ -19,11 +19,11 @@ angular.module('uiGmapgoogle-maps')
 'uiGmapSearchBoxParentModel', '$http', '$templateCache', '$compile',
   (GoogleMapApi, Logger, SearchBoxParentModel, $http, $templateCache, $compile) ->
     class SearchBox
-      constructor:  ->
+      constructor: ->
         @$log = Logger
         @restrict = 'EMA'
         @require = '^' + 'uiGmapGoogleMap'
-        @priority = -1
+        @priority = - 1
         @transclude = true
         @template = '<span class=\'angular-google-map-search\' ng-transclude></span>'
         @replace = true
@@ -37,7 +37,7 @@ angular.module('uiGmapgoogle-maps')
       link: (scope, element, attrs, mapCtrl) =>
 
         GoogleMapApi.then (maps) =>
-          $http.get(scope.template, { cache: $templateCache })
+          $http.get(scope.template, { cache: $templateCache } )
             .success (template) =>
               if angular.isUndefined scope.events
                 @$log.error 'searchBox: the events property is required'

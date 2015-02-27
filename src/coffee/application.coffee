@@ -1,10 +1,15 @@
-angular.module 'doctorsApp', ['ui.router', 'ngResource', 'doctorApp.controllers', 'doctorsApp.services']
 
+# Doctors Application
+angular.module 'doctorsApp', 
+[
+	'ui.router', 'ngResource', 'doctorsApp.controllers', 'doctorsApp.services'
+]
+
+# UI Router
 .config ($stateProvider, $urlRouterProvider, $locationProvider) ->
-	$urlRouterProvider.otherwise "/" # For any unmatched url, redirect to /state1
 	$locationProvider.html5Mode true
-
-	$stateProvider # Now set up the states
+	$urlRouterProvider.otherwise "/" # Redirect unmatched urls to root
+	$stateProvider # Settting up the states
 		.state 'main',
 			url: "/"
 			templateUrl: "views/main.html"
@@ -13,9 +18,14 @@ angular.module 'doctorsApp', ['ui.router', 'ngResource', 'doctorApp.controllers'
 			url: "/doctors"
 			templateUrl: "views/doctors.html"
 			controller: "DoctorsCtrl"
+		.state 'doctor',
+			url: "/doctors/:doctorId"
+			templateUrl: "views/doctor.html"
+			controller: "DoctorCtrl"
 
-# .config (uiGmapGoogleMapApiProvider) ->
-#     uiGmapGoogleMapApiProvider.configure
-#         #    key: 'your api key',
-#         v: '3.17'
-#         libraries: 'weather,geometry,visualization'
+# Google Maps API
+.config (uiGmapGoogleMapApiProvider) ->
+    uiGmapGoogleMapApiProvider.configure
+        # key: 'your api key',
+        v: '3.17',
+        libraries: 'weather,geometry,visualization'

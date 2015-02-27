@@ -2,7 +2,7 @@
 angular.module('uiGmapgoogle-maps.extensions')
 .service('uiGmapExtendGWin', ->
   init: _.once ->
-    return unless google or google?.maps or google.maps.InfoWindow?
+    return unless google or google? .maps or google.maps.InfoWindow?
     #Taken from : http://stackoverflow.com/questions/12410062/check-if-infowindow-is-opened-google-maps-v3
     #
     #
@@ -64,7 +64,7 @@ angular.module('uiGmapgoogle-maps.extensions')
       window.MarkerLabel_::setContent = ->
         content = @marker_.get('labelContent')
         return if !content or _.isEqual @oldContent, content
-        if typeof content?.nodeType is 'undefined'
+        if typeof content? .nodeType is 'undefined'
           @labelDiv_.innerHTML = content
           @eventDiv_.innerHTML = @labelDiv_.innerHTML
           @oldContent = content
@@ -78,13 +78,13 @@ angular.module('uiGmapgoogle-maps.extensions')
 
       ###
       Removes the DIV for the label from the DOM. It also removes all event handlers.
-      This method is called automatically when the marker's <code>setMap(null)</code>
+      This method is called automatically when the marker's < code > setMap(null) </code >
       method is called.
       @private
       ###
       window.MarkerLabel_::onRemove = ->
-        @labelDiv_.parentNode.removeChild @labelDiv_  if @labelDiv_.parentNode?
-        @eventDiv_.parentNode.removeChild @eventDiv_  if @eventDiv_.parentNode?
+        @labelDiv_.parentNode.removeChild @labelDiv_ if @labelDiv_.parentNode?
+        @eventDiv_.parentNode.removeChild @eventDiv_ if @eventDiv_.parentNode?
         # Remove event listeners:
         return unless @listeners_
         return unless @listeners_.length

@@ -7,8 +7,8 @@ describe "directives.api.Window", ->
                     latitude: 90.0
                     longitude: 89.0
                 show: true
-                $watch:()->
-                $on:()->
+                $watch: () ->
+                $on: () ->
                 control: {}
                 $evalAsync: (fn) ->
                   fn()
@@ -16,20 +16,20 @@ describe "directives.api.Window", ->
                 html: ->
                     "<p>test html</p>"
             attrs: {
-                isiconvisibleonclick:true
+                isiconvisibleonclick: true
             }
-            ctrls: [{getMap:()->{}}]
+            ctrls: [{getMap: () ->{} } ]
         @gmap = {}
         inject ['$rootScope','$q', '$compile', '$http',
         '$templateCache', 'uiGmapExtendGWin', 'uiGmapWindow',
-          (_$rootScope_,$q, $compile, $http, $templateCache, ExtendGWin, Window) =>
+          (_$rootScope_, $q, $compile, $http, $templateCache, ExtendGWin, Window) =>
             ExtendGWin.init()
-            @$rootScope =  _$rootScope_
+            @$rootScope = _$rootScope_
             d = $q.defer()
             d.resolve @gmap
 
             @$rootScope.deferred = d
-            @mocks.ctrls[0].getScope =  =>
+            @mocks.ctrls[0].getScope = =>
                 @$rootScope
             @windowScope = _.extend @$rootScope.$new(), @mocks.scope
 

@@ -4,10 +4,10 @@ angular.module('uiGmapgoogle-maps.directives.api')
   'uiGmapCtrlHandle', 'uiGmapIsReady', 'uiGmapuuid',
   'uiGmapExtendGWin', 'uiGmapExtendMarkerClusterer',
   'uiGmapGoogleMapsUtilV3','uiGmapGoogleMapApi','uiGmapEventsHelper',
-  ($timeout,$q, $log, GmapUtil, BaseObject,
+  ($timeout, $q, $log, GmapUtil, BaseObject,
     CtrlHandle, IsReady, uuid,
     ExtendGWin, ExtendMarkerClusterer,
-    GoogleMapsUtilV3,GoogleMapApi, EventsHelper) ->
+    GoogleMapsUtilV3, GoogleMapApi, EventsHelper) ->
       'use strict'
       DEFAULTS = undefined
 
@@ -85,18 +85,18 @@ angular.module('uiGmapgoogle-maps.directives.api')
             # Parse options
             opts =
               options: {}
-            opts.options = scope.options  if attrs.options
+            opts.options = scope.options if attrs.options
 
-            opts.styles = scope.styles  if attrs.styles
+            opts.styles = scope.styles if attrs.styles
             if attrs.type
               type = attrs.type.toUpperCase()
               if google.maps.MapTypeId.hasOwnProperty(type)
-                  opts.mapTypeId = google.maps.MapTypeId[attrs.type.toUpperCase()]
+                  opts.mapTypeId = google.maps.MapTypeId[attrs.type.toUpperCase() ]
               else
                   $log.error "angular-google-maps: invalid map type '#{attrs.type}'"
 
             # Create the map
-            mapOptions = angular.extend {}, DEFAULTS, opts,
+            mapOptions = angular.extend {} , DEFAULTS, opts,
               center: @getCoords scope.center
               zoom: scope.zoom
               bounds: scope.bounds
@@ -111,17 +111,17 @@ angular.module('uiGmapgoogle-maps.directives.api')
               resolveSpawned()
 
             disabledEvents =
-              if attrs.events and scope.events?.blacklist?
+              if attrs.events and scope.events? .blacklist?
                 scope.events.blacklist
               else []
-            if  _.isString disabledEvents
+            if _.isString disabledEvents
               disabledEvents = [disabledEvents]
 
             maybeHookToEvent = (eventName, fn, prefn) ->
               unless _.contains disabledEvents, eventName
                 prefn() if prefn
                 listeners.push google.maps.event.addListener _gMap, eventName, ->
-                  unless scope.update?.lazy
+                  unless scope.update? .lazy
                     fn()
 
             unless _.contains disabledEvents, 'all'
@@ -137,7 +137,7 @@ angular.module('uiGmapgoogle-maps.directives.api')
 
               maybeHookToEvent 'drag', ->
                 c = _gMap.center
-                $timeout  ->
+                $timeout ->
                   s = scope
                   if angular.isDefined(s.center.type)
                     s.center.coordinates[1] = c.lat()
@@ -145,7 +145,7 @@ angular.module('uiGmapgoogle-maps.directives.api')
                   else
                     s.center.latitude = c.lat()
                     s.center.longitude = c.lng()
-                , scope.eventOpts?.debounce?.debounce?.dragMs
+                , scope.eventOpts? .debounce? .debounce? .dragMs
 
               #zoom locks from scope and from directive.. sucks if we stop watching.. we don't need it
               settingZoomFromScope = false
@@ -157,14 +157,14 @@ angular.module('uiGmapgoogle-maps.directives.api')
                   $timeout ->
                     scope.zoom = _gMap.zoom
                     settingZoomFromDirective = false
-                  , scope.eventOpts?.debounce?.zoomMs
+                  , scope.eventOpts? .debounce? .zoomMs
 
               #center locks from scope and from directive.. sucks if we stop watching.. we don't need it
               settingCenterFromScope = false
               settingCenterFromDirective = false
               maybeHookToEvent 'center_changed', ->
                 c = _gMap.center
-                return  if settingCenterFromScope #if the scope notified this change then there is no reason to update scope otherwise infinite loop
+                return if settingCenterFromScope #if the scope notified this change then there is no reason to update scope otherwise infinite loop
                 settingCenterFromDirective = true
                 $timeout ->
                   s = scope
@@ -173,24 +173,24 @@ angular.module('uiGmapgoogle-maps.directives.api')
                       s.center.coordinates[1] = c.lat() if s.center.coordinates[1] isnt c.lat()
                       s.center.coordinates[0] = c.lng() if s.center.coordinates[0] isnt c.lng()
                     else
-                      s.center.latitude = c.lat()  if s.center.latitude isnt c.lat()
-                      s.center.longitude = c.lng()  if s.center.longitude isnt c.lng()
+                      s.center.latitude = c.lat() if s.center.latitude isnt c.lat()
+                      s.center.longitude = c.lng() if s.center.longitude isnt c.lng()
                   settingCenterFromDirective = false
-                , scope.eventOpts?.debounce?.centerMs
+                , scope.eventOpts? .debounce? .centerMs
 
               maybeHookToEvent 'idle', ->
                 b = _gMap.getBounds()
                 ne = b.getNorthEast()
                 sw = b.getSouthWest()
-                scope.$evalAsync (s)  ->
+                scope.$evalAsync (s) ->
                   # update center
                   c = _gMap.center
                   if angular.isDefined(s.center.type)
                     s.center.coordinates[1] = c.lat() if s.center.coordinates[1] isnt c.lat()
                     s.center.coordinates[0] = c.lng() if s.center.coordinates[0] isnt c.lng()
                   else
-                    s.center.latitude = c.lat()  if s.center.latitude isnt c.lat()
-                    s.center.longitude = c.lng()  if s.center.longitude isnt c.lng()
+                    s.center.latitude = c.lat() if s.center.latitude isnt c.lat()
+                    s.center.longitude = c.lng() if s.center.longitude isnt c.lng()
 
                   if s.bounds isnt null and s.bounds isnt `undefined` and s.bounds isnt undefined
                     s.bounds.northeast =
@@ -229,7 +229,7 @@ angular.module('uiGmapgoogle-maps.directives.api')
               scope.control.refresh = (maybeCoords) =>
                 return unless _gMap?
                 google.maps.event.trigger _gMap, 'resize' #actually refresh
-                if maybeCoords?.latitude? and maybeCoords?.latitude?
+                if maybeCoords? .latitude? and maybeCoords? .latitude?
                   coords = @getCoords(maybeCoords)
                   if @isTrue(attrs.pan)
                     _gMap.panTo coords
@@ -253,7 +253,7 @@ angular.module('uiGmapgoogle-maps.directives.api')
             scope.$watch 'center', (newValue, oldValue) =>
               return if newValue == oldValue or settingCenterFromDirective
               coords = @getCoords scope.center #get scope.center to make sure that newValue is not behind
-              return  if coords.lat() is _gMap.center.lat() and coords.lng() is _gMap.center.lng()
+              return if coords.lat() is _gMap.center.lat() and coords.lng() is _gMap.center.lng()
               settingCenterFromScope = true
               unless dragging
                 if !@validateCoords(newValue)
@@ -267,17 +267,17 @@ angular.module('uiGmapgoogle-maps.directives.api')
             , true
 
             scope.$watch 'zoom', (newValue, oldValue) =>
-              return  if _.isEqual(newValue,oldValue) or _gMap.getZoom() == scope.zoom
+              return if _.isEqual(newValue, oldValue) or _gMap.getZoom() == scope.zoom
               #make this time out longer than zoom_changes because zoom_changed should be done first
               #being done first should make scopes equal
               settingZoomFromScope = true
-              $timeout  ->
+              $timeout ->
                 _gMap.setZoom newValue
                 settingZoomFromScope = false
-              , scope.eventOpts?.debounce?.zoomMs + 20, false # use $timeout as a simple wrapper for setTimeout without calling $apply
+              , scope.eventOpts? .debounce? .zoomMs + 20, false # use $timeout as a simple wrapper for setTimeout without calling $apply
 
             scope.$watch 'bounds', (newValue, oldValue) ->
-              return  if newValue is oldValue
+              return if newValue is oldValue
               if !newValue.northeast.latitude? or !newValue.northeast.longitude? or !newValue.southwest.latitude? or !newValue.southwest.longitude?
                 $log.error "Invalid map bounds for new value: #{JSON.stringify newValue}"
                 return
@@ -287,10 +287,10 @@ angular.module('uiGmapgoogle-maps.directives.api')
               _gMap.fitBounds bounds
 
             ['options','styles'].forEach (toWatch) ->
-              scope.$watch toWatch, (newValue,oldValue) ->
+              scope.$watch toWatch, (newValue, oldValue) ->
                 watchItem = @exp
-                return  if _.isEqual(newValue,oldValue)
+                return if _.isEqual(newValue, oldValue)
                 opts.options = newValue
-                _gMap.setOptions opts  if _gMap?
+                _gMap.setOptions opts if _gMap?
             , true
   ]

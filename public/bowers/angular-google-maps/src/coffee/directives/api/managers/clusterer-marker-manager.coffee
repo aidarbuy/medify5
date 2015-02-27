@@ -3,7 +3,7 @@ angular.module('uiGmapgoogle-maps.directives.api.managers')
 'uiGmapFitHelper', 'uiGmapPropMap', ($log, FitHelper, PropMap) ->
   class ClustererMarkerManager extends FitHelper
     @type = 'ClustererMarkerManager'
-    constructor: (gMap, opt_markers={}, @opt_options = {}, @opt_events) ->
+    constructor: (gMap, opt_markers = {} , @opt_options = {} , @opt_events) ->
       super()
       @type = ClustererMarkerManager.type
 
@@ -22,7 +22,7 @@ angular.module('uiGmapgoogle-maps.directives.api.managers')
         msg = 'gMarker.key undefined and it is REQUIRED!!'
         Logger.error msg
 
-    add: (gMarker)=>
+    add: (gMarker) =>
       @checkKey gMarker
       @clusterer.addMarker gMarker, @noDrawOnSingleAddRemoves
       @propMapGMarkers.put gMarker.key, gMarker
@@ -34,11 +34,11 @@ angular.module('uiGmapgoogle-maps.directives.api.managers')
       @remove gMarker
       @add gMarker
 
-    addMany: (gMarkers)=>
+    addMany: (gMarkers) =>
       gMarkers.forEach (gMarker) =>
         @add gMarker
 
-    remove: (gMarker)=>
+    remove: (gMarker) =>
       @checkKey gMarker
       exists = @propMapGMarkers.get gMarker.key
       if exists
@@ -46,14 +46,14 @@ angular.module('uiGmapgoogle-maps.directives.api.managers')
         @propMapGMarkers.remove gMarker.key
       @checkSync()
 
-    removeMany: (gMarkers)=>
+    removeMany: (gMarkers) =>
       gMarkers.forEach (gMarker) =>
         @remove gMarker
 
-    draw: ()=>
+    draw: () =>
       @clusterer.repaint()
 
-    clear: ()=>
+    clear: () =>
       @removeMany @getGMarkers()
       @clusterer.repaint()
 

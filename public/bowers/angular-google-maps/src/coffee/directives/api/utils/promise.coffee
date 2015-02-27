@@ -38,7 +38,7 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
     combined = $q.all [promise, cancelDeferred.promise]
     wrapped = $q.defer()
 
-    promise.then cancelDeferred.resolve, (->), (notify)  ->
+    promise.then cancelDeferred.resolve, (->), (notify) ->
       cancelDeferred.notify notify
       wrapped.notify notify
 
@@ -71,13 +71,13 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
   #export
   defer = ->
     $q.defer()
-  resolve =  ->
+  resolve = ->
     d = $q.defer()
-    d.resolve.apply(undefined,arguments)
+    d.resolve.apply(undefined, arguments)
     d.promise
 
   #create a promise around a callback that has not executed
-  promise= (fnToWrap) ->
+  promise = (fnToWrap) ->
     unless _.isFunction fnToWrap
       $log.error "uiGmapPromise.promise() only accepts functions"
       return

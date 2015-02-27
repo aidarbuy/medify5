@@ -1,5 +1,5 @@
 describe 'uiGmapMarkers (directive creation)', ->
-  allDone =  undefined
+  allDone = undefined
   rootScope = null
   timeout = null
   GMarker = null
@@ -14,17 +14,17 @@ describe 'uiGmapMarkers (directive creation)', ->
   beforeEach ->
     digest = (fn) =>
      fn()
-     timeout?.flush()
-     rootScope?.$apply()
-     
+     timeout? .flush()
+     rootScope? .$apply()
+
     @html = """
-      <ui-gmap-google-map draggable="true" center="map.center" zoom="map.zoom">
-          <ui-gmap-markers models="items" coords="'self'" click="'onClick'" ></ui-gmap-markers>
-      </ui-gmap-google-map>
+       < ui - gmap - google - map draggable = "true" center="map.center" zoom="map.zoom" >
+           < ui - gmap - markers models = "items" coords="'self'" click="'onClick'" ></ui - gmap - markers >
+      </ui - gmap - google - map >
     """
     @map =
       zoom: 12
-      center : {longitude: 47, latitude: -27}
+      center : {longitude: 47, latitude: - 27}
     apiMock = window['uiGmapInitiator'].initMock().apiMock
     GMarker = window.google.maps.Marker
     inject ['$rootScope', '$timeout', '$compile', '$q', 'uiGmapMarkers',
@@ -35,7 +35,7 @@ describe 'uiGmapMarkers (directive creation)', ->
         @subject = Markers
     ]
 
-  describe 'should add markers for each object in model',  ->
+  describe 'should add markers for each object in model', ->
     it 'from start', (done) ->
       scope = rootScope.$new()
       _.extend scope, map: @map
@@ -43,7 +43,7 @@ describe 'uiGmapMarkers (directive creation)', ->
       toPush = {}
       toPush.id = 0
       toPush.latitude = 47
-      toPush.longitude = -27
+      toPush.longitude = - 27
       scope.items = [toPush]
       element = @compile(@html)(scope)
       digest =>
@@ -65,7 +65,7 @@ describe 'uiGmapMarkers (directive creation)', ->
           toPush = {}
           toPush.id = 0
           toPush.latitude = 47
-          toPush.longitude = -27
+          toPush.longitude = - 27
           scope.items.push(toPush)
         , 250
         timeout =>
@@ -83,20 +83,20 @@ describe 'uiGmapMarkers (directive creation)', ->
 
           scope.items = [
             {
-              id:0,
-              latitude:47,
-              longitude: -27
-            },
+              id: 0,
+              latitude: 47,
+              longitude: - 27
+            } ,
             {
-              id:1,
-              latitude:67,
-              longitude: -57
+              id: 1,
+              latitude: 67,
+              longitude: - 57
             }
           ]
           update =
-            id:1,
-            latitude:89,
-            longitude: -150
+            id: 1,
+            latitude: 89,
+            longitude: - 150
 
           createdGMarkers = []
           listener = GMarker.creationSubscribe @, (gMarker) ->
@@ -135,8 +135,8 @@ describe 'uiGmapMarkers (directive creation)', ->
 
       toPush = {
         id: 0,
-        latitude:47,
-        longitude: -27,
+        latitude: 47,
+        longitude: - 27,
         onClick: ->
           modelClicked = true
       }
@@ -144,7 +144,7 @@ describe 'uiGmapMarkers (directive creation)', ->
 
       listener = GMarker.creationSubscribe @, (gMarker) ->
         _.delay ->
-          window.google.maps.event.fireListener(gMarker,'click')
+          window.google.maps.event.fireListener(gMarker, 'click')
           expect(modelClicked).toBeTruthy()
           done()
         , 250

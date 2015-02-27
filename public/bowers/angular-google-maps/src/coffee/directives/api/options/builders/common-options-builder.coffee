@@ -11,10 +11,10 @@ angular.module('uiGmapgoogle-maps.directives.api.options.builders')
       'draggable'
       'editable'
       'visible'
-      {prop: 'stroke',isColl: true}
+      {prop: 'stroke', isColl: true}
     ]
 
-    buildOpts: (customOpts = {}, forEachOpts = {}) =>
+    buildOpts: (customOpts = {} , forEachOpts = {} ) =>
       unless @scope
         $log.error 'this.scope not defined in CommonOptionsBuilder can not buildOpts'
         return
@@ -27,9 +27,9 @@ angular.module('uiGmapgoogle-maps.directives.api.options.builders')
       stroke = @scopeOrModelVal 'stroke', @scope, model
       opts = angular.extend customOpts, @DEFAULTS,
         map: @map
-        strokeColor: stroke?.color
-        strokeOpacity: stroke?.opacity
-        strokeWeight: stroke?.weight
+        strokeColor: stroke? .color
+        strokeOpacity: stroke? .opacity
+        strokeWeight: stroke? .weight
 
       angular.forEach angular.extend(forEachOpts,
           clickable: true
@@ -54,8 +54,8 @@ angular.module('uiGmapgoogle-maps.directives.api.options.builders')
       unless props?
         props = @props
       props.forEach (prop) =>
-        if @attrs[prop]? or @attrs[prop?.prop]?
-          if prop?.isColl
+        if @attrs[prop]? or @attrs[prop? .prop]?
+          if prop? .isColl
             @scope.$watchCollection prop.prop, @setMyOptions
           else
             @scope.$watch prop, @setMyOptions

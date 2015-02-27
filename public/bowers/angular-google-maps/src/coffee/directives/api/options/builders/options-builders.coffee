@@ -4,18 +4,18 @@ angular.module('uiGmapgoogle-maps.directives.api.options.builders')
   (CommonOptionsBuilder) ->
     class PolylineOptionsBuilder extends CommonOptionsBuilder
       buildOpts: (pathPoints) ->
-        super {path: pathPoints},{geodesic: false}
+        super {path: pathPoints} , {geodesic: false}
 ])
 .factory('uiGmapShapeOptionsBuilder', [
   'uiGmapCommonOptionsBuilder'
   (CommonOptionsBuilder) ->
     class ShapeOptionsBuilder extends CommonOptionsBuilder
-      buildOpts: (customOpts,forEachOpts) ->
+      buildOpts: (customOpts, forEachOpts) ->
         model = if @hasModel then @scope.model else @scope #handle plurals
         fill = @scopeOrModelVal 'fill', @scope, model
         customOpts = angular.extend customOpts,
-          fillColor: fill?.color
-          fillOpacity: fill?.opacity
+          fillColor: fill? .color
+          fillOpacity: fill? .opacity
         super customOpts, forEachOpts
 ])
 .factory('uiGmapPolygonOptionsBuilder', [
@@ -23,7 +23,7 @@ angular.module('uiGmapgoogle-maps.directives.api.options.builders')
   (ShapeOptionsBuilder) ->
     class PolygonOptionsBuilder extends ShapeOptionsBuilder
       buildOpts: (pathPoints) ->
-         super {path: pathPoints},{geodesic: false}
+         super {path: pathPoints} , {geodesic: false}
 ])
 .factory('uiGmapRectangleOptionsBuilder', [
   'uiGmapShapeOptionsBuilder'

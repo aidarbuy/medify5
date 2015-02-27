@@ -3,15 +3,15 @@ describe "directives.api.polygon", ->
     window['uiGmapInitiator'].initDirective @, 'Polygon'
 
     @html = angular.element """
-    <ui-gmap-google-map center="map.center" zoom="map.zoom">
-      <ui-gmap-polygon static="true" ng-repeat="p in map.polygons track by p.id" path="p.path" stroke="p.stroke" visible="p.visible"
-        geodesic="p.geodesic" fill="p.fill" fit="false"
-        editable="p.editable"
-        draggable="p.draggable"
-        control="map.polygon.control"
-        events="map.polygon.events">
-      </ui-gmap-polygon>
-    </ui-gmap-google-map>
+     < ui - gmap - google - map center = "map.center" zoom="map.zoom" >
+       < ui - gmap - polygon static = "true" ng-repeat="p in map.polygons track by p.id" path="p.path" stroke="p.stroke" visible="p.visible"
+        geodesic = "p.geodesic" fill="p.fill" fit="false"
+        editable = "p.editable"
+        draggable = "p.draggable"
+        control = "map.polygon.control"
+        events = "map.polygon.events" >
+      </ui - gmap - polygon >
+    </ui - gmap - google - map >
       """
 
     @scope.map = _.extend @scope.map,
@@ -27,15 +27,15 @@ describe "directives.api.polygon", ->
           path: [
             {
               latitude: 50,
-              longitude: -80
-            },
+              longitude: - 80
+            } ,
             {
               latitude: 30,
-              longitude: -120
-            },
+              longitude: - 120
+            } ,
             {
               latitude: 20,
-              longitude: -95
+              longitude: - 95
             }
           ],
           stroke:
@@ -56,15 +56,15 @@ describe "directives.api.polygon", ->
           path: [
             {
               latitude: 60,
-              longitude: -80
-            },
+              longitude: - 80
+            } ,
             {
               latitude: 40,
-              longitude: -120
-            },
+              longitude: - 120
+            } ,
             {
               latitude: 45,
-              longitude: -95
+              longitude: - 95
             }
           ],
           stroke:

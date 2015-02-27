@@ -1,8 +1,12 @@
-h1 Doctors
-table.table.table-hover.table-bordered
-    tr.success
-        th Name
-        th Description
-    tr(ng-repeat='doctor in doctors')
-        td {{ doctor.name }}
-        td {{ doctor.description }}
+
+.row
+    .col-md-8
+        .list-group.col-md-6(ng-repeat="doctor in doctors | orderBy: 'id'")
+            a.list-group-item(ui-sref="doctor({ doctorId: doctor.id })")
+                img.img-responsive.img-rounded(src="../{{ doctor.imageURL }}")
+                h4.list-group-item-heading {{ doctor.name }}
+                h6.list-group-item-text {{ doctor.description }}
+    .col-md-4
+        #map_canvas(data-spy="affix" data-offset-top="60" data-offset-bottom="200")
+            ui-gmap-google-map(center="map.center" zoom="map.zoom" draggable="true" options="options" bounds="map.bounds")
+                ui-gmap-markers(models="markers" coords="'self'" icon="'icon'")

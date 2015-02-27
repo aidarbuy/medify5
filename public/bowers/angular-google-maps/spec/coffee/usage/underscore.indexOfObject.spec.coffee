@@ -19,20 +19,20 @@ describe "uiGmapLodash.indexOfObject", ->
       subject = uiGmapLodash
 
   it "finds first element", ->
-    i = subject.indexOfObject(@objArray, {a: 1, b: 1})
+    i = subject.indexOfObject(@objArray, {a: 1, b: 1} )
     expect(i).toEqual(0)
 
   it "finds element beginning", ->
-    i = subject.indexOfObject(@objArray, {a: 2, b: 2})
+    i = subject.indexOfObject(@objArray, {a: 2, b: 2} )
     expect(i).toEqual(1)
   it "finds last element", ->
-    i = subject.indexOfObject(@objArray, {a: 5, b: 3})
+    i = subject.indexOfObject(@objArray, {a: 5, b: 3} )
     expect(i).toEqual(2)
 
   it "finds last element", ->
-    i = subject.indexOfObject(@objArray, {a: 3, b: 3})
+    i = subject.indexOfObject(@objArray, {a: 3, b: 3} )
     expect(i).toEqual(3)
 
   it "find no element", ->
-    i = subject.indexOfObject(@objArray, {a: 4, b: 3})
-    expect(i).toEqual(-1)
+    i = subject.indexOfObject(@objArray, {a: 4, b: 3} )
+    expect(i).toEqual( - 1)

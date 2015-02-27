@@ -12,13 +12,13 @@
 </head>
 
 <body ng-controller="mainCtrl">
-<button ng-click="click()"> +1 </button>
-<div id="map_canvas" >
-    <ui-gmap-google-map center="map.center" zoom="map.zoom">
-        <ui-gmap-marker coords="map.marker.coords" idkey="map.marker.id" options="map.marker.options"></ui-gmap-marker>
-    </ui-gmap-google-map>
-</div>
-{{number}}
+    <button ng-click="click()"> +1 </button>
+    <div id="map_canvas">
+        <ui-gmap-google-map center="map.center" zoom="map.zoom">
+            <ui-gmap-marker coords="map.marker.coords" idkey="map.marker.id" options="map.marker.options"></ui-gmap-marker>
+        </ui-gmap-google-map>
+    </div>
+    {{number}}
 </body>
 
 </html>

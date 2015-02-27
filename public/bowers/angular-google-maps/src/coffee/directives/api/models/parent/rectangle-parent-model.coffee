@@ -2,7 +2,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.parent')
 .factory 'uiGmapRectangleParentModel',
 ['uiGmapLogger','uiGmapGmapUtil',
 'uiGmapEventsHelper', 'uiGmapRectangleOptionsBuilder',
-($log,GmapUtil,
+($log, GmapUtil,
   EventsHelper, Builder) ->
   class RectangleParentModel extends Builder
     @include GmapUtil
@@ -14,9 +14,9 @@ angular.module('uiGmapgoogle-maps.directives.api.models.parent')
       myListeners = []
       listeners = undefined
       fit = =>
-        @fitMapBounds @map, bounds  if @isTrue(attrs.fit)
+        @fitMapBounds @map, bounds if @isTrue(attrs.fit)
       createBounds = =>
-        if scope.bounds? and scope.bounds?.sw? and scope.bounds?.ne? and @validateBoundPoints(scope.bounds)
+        if scope.bounds? and scope.bounds? .sw? and scope.bounds? .ne? and @validateBoundPoints(scope.bounds)
           bounds = @convertBoundPoints(scope.bounds)
           $log.info "new new bounds created: #{rectangle}"
         else if scope.bounds.getNorthEast? and scope.bounds.getSouthWest? #google format
@@ -69,7 +69,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.parent')
       init() if bounds?
       # Update map when center coordinates change
       scope.$watch 'bounds', ((newValue, oldValue) ->
-        return  if _.isEqual(newValue, oldValue) and bounds? or dragging
+        return if _.isEqual(newValue, oldValue) and bounds? or dragging
         settingBoundsFromScope = true
         unless newValue?
           clear()
@@ -85,7 +85,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.parent')
       ), true
 
       @setMyOptions = (newVals, oldVals) =>
-        unless _.isEqual newVals,oldVals
+        unless _.isEqual newVals, oldVals
           if bounds? and newVals?
             rectangle.setOptions @buildOpts bounds
 

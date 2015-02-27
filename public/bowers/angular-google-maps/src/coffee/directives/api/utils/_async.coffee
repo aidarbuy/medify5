@@ -12,7 +12,7 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
   promiseTypes = uiGmapPromise.promiseTypes
   isInProgress = uiGmapPromise.isInProgress
   promiseStatus = uiGmapPromise.promiseStatus
-  ExposedPromise =  uiGmapPromise.ExposedPromise
+  ExposedPromise = uiGmapPromise.ExposedPromise
   SniffedPromise = uiGmapPromise.SniffedPromise
 
   kickPromise = (sniffedPromise, cancelCb) ->
@@ -23,24 +23,24 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
     promise.cancelCb = cancelCb
     promise
 
-  doSkippPromise = (sniffedPromise,lastPromise) ->
+  doSkippPromise = (sniffedPromise, lastPromise) ->
     # note this skipp could be specific to polys (but it works for that)
     if sniffedPromise.promiseType == promiseTypes.create and
-      lastPromise.promiseType != promiseTypes.delete and lastPromise.promiseType != promiseTypes.init
+      lastPromise.promiseType ! = promiseTypes.delete and lastPromise.promiseType ! = promiseTypes.init
         $log.debug "lastPromise.promiseType #{lastPromise.promiseType}, newPromiseType: #{sniffedPromise.promiseType}, SKIPPED MUST COME AFTER DELETE ONLY"
         return true
     false
 
-  maybeCancelPromises = (queue, sniffedPromise,lastPromise) ->
+  maybeCancelPromises = (queue, sniffedPromise, lastPromise) ->
 #    $log.warn "sniff: promiseType: #{sniffedPromise.promiseType}, lastPromiseType: #{lastPromise.promiseType}"
 #    $log.warn "lastPromise.cancelCb #{lastPromise.cancelCb}"
-    if sniffedPromise.promiseType == promiseTypes.delete and lastPromise.promiseType != promiseTypes.delete
+    if sniffedPromise.promiseType == promiseTypes.delete and lastPromise.promiseType ! = promiseTypes.delete
       if lastPromise.cancelCb? and _.isFunction(lastPromise.cancelCb) and isInProgress(lastPromise)
         $log.debug "promiseType: #{sniffedPromise.promiseType}, CANCELING LAST PROMISE type: #{lastPromise.promiseType}"
         lastPromise.cancelCb('cancel safe')
         #see if we can cancel anything else
         first = queue.peek()
-        if first? and isInProgress(first)# and first.promiseType != promiseTypes.delete
+        if first? and isInProgress(first) # and first.promiseType != promiseTypes.delete
           if first.hasOwnProperty("cancelCb") and _.isFunction first.cancelCb
             $log.debug "promiseType: #{first.promiseType}, CANCELING FIRST PROMISE type: #{first.promiseType}"
             first.cancelCb('cancel safe')
@@ -56,32 +56,32 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
   The whole point is to check if there is existing async work going on. If so we wait on it.
 
   arguments:
-  - existingPiecesObj =  Queue<Promises>
-  - sniffedPromise = object wrapper holding a function to a pending (function) promise (promise: fnPromise)
+   - existingPiecesObj = Queue < Promises >
+   - sniffedPromise = object wrapper holding a function to a pending (function) promise (promise: fnPromise)
   with its intended type.
-  - cancelCb = callback which accepts a string, this string is intended to be returned at the end of _async.each iterator
+   - cancelCb = callback which accepts a string, this string is intended to be returned at the end of _async.each iterator
 
     Where the cancelCb passed msg is 'cancel safe' _async.each will drop out and fall through. Thus canceling the promise
     gracefully without messing up state.
 
   Synopsis:
 
-   - Promises have been broken down to 4 states create, update,delete (3 main) and init. (Helps boil down problems in ordering)
+    - Promises have been broken down to 4 states create, update, delete (3 main) and init. (Helps boil down problems in ordering)
     where (init) is special to indicate that it is one of the first or to allow a create promise to work beyond being after a delete
 
-   - Every Promise that comes is is enqueue and linked to the last promise in the queue.
+    - Every Promise that comes is is enqueue and linked to the last promise in the queue.
 
-   - A promise can be skipped or canceled to save cycles.
+    - A promise can be skipped or canceled to save cycles.
 
   Saved Cycles:
-    - Skipped - This will only happen if async work comes in out of order. Where a pending create promise (un-executed) comes in
+     - Skipped - This will only happen if async work comes in out of order. Where a pending create promise (un - executed) comes in
       after a delete promise.
-    - Canceled - Where an incoming promise (un-executed promise) is of type delete and the any lastPromise is not a delete type.
+     - Canceled - Where an incoming promise (un - executed promise) is of type delete and the any lastPromise is not a delete type.
 
 
   NOTE:
-  - You should not muck with existingPieces as its state is dependent on this functional loop.
-  - PromiseQueueManager should not be thought of as a class that has a life expectancy (it has none). It's sole
+   - You should not muck with existingPieces as its state is dependent on this functional loop.
+   - PromiseQueueManager should not be thought of as a class that has a life expectancy (it has none). It's sole
   purpose is to link, skip, and kill promises. It also manages the promise queue existingPieces.
   ###
   PromiseQueueManager = (existingPiecesObj, sniffedPromise, cancelCb) ->
@@ -139,10 +139,10 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
 
   ###
     Author: Nicholas McCready & jfriend00
-    _async handles things asynchronous-like :), to allow the UI to be free'd to do other things
-    Code taken from http://stackoverflow.com/questions/10344498/best-way-to-iterate-over-an-array-without-blocking-the-ui
+    _async handles things asynchronous - like : ), to allow the UI to be free'd to do other things
+    Code taken from http: //stackoverflow.com/questions/10344498/best - way - to - iterate - over - an - array - without - blocking - the - ui
 
-    The design of any functionality of _async is to be like lodash/underscore and replicate it but call things
+    The design of any functionality of _async is to be like lodash / underscore and replicate it but call things
     asynchronously underneath. Each should be sufficient for most things to be derived from.
 
     Optional Asynchronous Chunking via promises.
@@ -183,7 +183,7 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
       overallD.reject error
       return ret
 
-    if array == undefined or array?.length <= 0
+    if array == undefined or array? .length <= 0
       overallD.resolve()
       return ret
     # set this to whatever number of items you can process at once
@@ -195,7 +195,7 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
   map = (objs, iterator, chunkSizeOrDontChunk, pauseCb, index, pauseMilli) ->
 
     results = []
-    return uiGmapPromise.resolve(results)  unless objs? and objs?.length > 0
+    return uiGmapPromise.resolve(results) unless objs? and objs? .length > 0
 
     each(objs, (o) ->
       results.push iterator o
@@ -209,7 +209,7 @@ angular.module('uiGmapgoogle-maps.directives.api.utils')
   managePromiseQueue: managePromiseQueue
   promiseLock: managePromiseQueue
   defaultChunkSize: defaultChunkSize
-  chunkSizeFrom:(fromSize) ->
+  chunkSizeFrom: (fromSize) ->
     ret = undefined
     if _.isNumber fromSize
       ret = fromSize
